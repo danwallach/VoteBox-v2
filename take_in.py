@@ -46,3 +46,9 @@ def take_in():
         if time.time() > timeout:
             print "Tray is empty."
             break
+
+# Main execution.
+setup()
+take_in()
+
+RPIO.cleanup()
