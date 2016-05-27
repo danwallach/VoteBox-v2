@@ -15,7 +15,7 @@ MOTOR_FORWARD = 3
 MOTOR_BACKWARD = 4
 
 # Input pins.
-after_halfway = 14
+HALFWAY_TRIGGER = 14
 
 def setup():
     """Set up the GPIO pins as input and output."""
@@ -29,7 +29,7 @@ def setup():
     RPIO.setup(MOTOR_FORWARD, RPIO.OUT)
     RPIO.setup(MOTOR_BACKWARD, RPIO.OUT)
 
-    RPIO.setup(after_halfway, RPIO.IN)
+    RPIO.setup(HALFWAY_TRIGGER, RPIO.IN)
 
 def take_in():
     """Take in all ballots."""
@@ -38,6 +38,7 @@ def take_in():
     print "Taking in a sheet..."
 
     print "Rolling forward..."
+    after_halfway = RPIO.input(HALFWAY_TRIGGER) # True if trigger depressed.
     while not after_halfway:
         RPIO.output(MOTOR_ENABLE, True)
         RPIO.output(MOTOR_FORWARD, True)
