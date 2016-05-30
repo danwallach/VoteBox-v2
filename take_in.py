@@ -33,7 +33,7 @@ def setup():
 def take_in():
     """Take in all ballots."""
     tray_empty = False
-    timeout = time.time() + 1   # Three seconds from now.
+    timeout = time.time() + 1   # One seconds from now.
 
     print "Taking in a sheet..."
 
@@ -62,8 +62,16 @@ def take_in():
     if not tray_empty:
         take_in()
 
+def clean_up():
+    """Roll backward to open tray, then shut down pins."""
+    GPIO.output(MOTOR_FORWARD, False)
+    GPIO.output(MOTOR_BACKWARD, True)
+    time.sleep(1)
+
+    GPIO.cleanup()
+
 # Main execution.
 setup()
 take_in()
+clean_up()
 
-GPIO.cleanup()
