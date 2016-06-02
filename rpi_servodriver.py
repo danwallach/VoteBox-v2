@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 
 # These constants are calibrated for the Futaba S3003 servo.
-PWM_FREQ = 40.0 # pulse trigger frequency
+PWM_FREQ = 50.0 # pulse trigger frequency
 MIN_PULSE = 0.4 # pulse ms fully CW
 MAX_PULSE = 2.2 # pulse ms fully CCW
 
@@ -22,7 +22,7 @@ def init(pin):
 #	angle: servo rotation. 0 = full CW, 1 = full CCW
 def start(servo, angle):
 	pulse_width = (MAX_PULSE - MIN_PULSE) * angle + MIN_PULSE
-	dc = pulse_width / (1000.0 / PWM_FREQ)
+	dc = pulse_width / (10.0 / PWM_FREQ)
 	servo.start(dc)
 	return
 	
@@ -32,7 +32,7 @@ def start(servo, angle):
 #	angle: servo rotation. 0 = full CW, 1 = full CCW
 def move(servo, angle):
 	pulse_width = (MAX_PULSE - MIN_PULSE) * angle + MIN_PULSE
-	dc = pulse_width / (1000.0 / PWM_FREQ)
+	dc = pulse_width / (10.0 / PWM_FREQ)
 	servo.ChangeDutyCycle(dc)
 	return
 	

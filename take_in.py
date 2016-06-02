@@ -9,9 +9,9 @@ Driven by the paper feeder of the HP Deskjet 1000 J110.
 """
 
 # Output pins.
-MOTOR_ENABLE = 2
-MOTOR_FORWARD = 3
-MOTOR_BACKWARD = 4
+MOTOR_ENABLE = 17
+MOTOR_FORWARD = 27
+MOTOR_BACKWARD = 22
 
 # Input pins.
 HALFWAY_TRIGGER = 23
