@@ -53,6 +53,7 @@ def take_in():
 
     print "Rolling backward..."
     time.sleep(.1)
+    slow_motor()
     while not before_halfway:
         GPIO.output(MOTOR_FORWARD, False)
         GPIO.output(MOTOR_BACKWARD, True)
@@ -61,6 +62,16 @@ def take_in():
     
     if not tray_empty:
         take_in()
+
+def slow_motor():
+    """Slow down motor to make accept or reject decision."""
+    GPIO.output(MOTOR_FORWARD, False)
+    p = GPIO.PWM(MOTOR_BACKWARD, 0.5)
+    p.start(1)
+    time.sleep(.5)
+    p.stop()
+
+
 
 def clean_up():
     """Roll backward to open tray, then shut down pins."""
