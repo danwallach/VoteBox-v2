@@ -1,11 +1,13 @@
 import RPi.GPIO as GPIO
 import time
+import logging
 
 """
 Takes in all ballots placed in tray. 
 
 Driven by the paper feeder of the HP Deskjet 1000 J110.
 """
+logging.basicConfig(level=logging.INFO)
 
 # Output pins.
 MOTOR_ENABLE = 17
@@ -17,9 +19,9 @@ HALFWAY_TRIGGER = 23
 
 def setup():
     """Set up the GPIO pins as input and output."""
-    print "Running Ballot Diverter V2."
+    logging.info("Running Ballot Diverter V2.")
 
-    print "Setting up pins..."
+    logging.info("Setting up pins...")
 
     GPIO.setmode(GPIO.BCM)
 
@@ -34,9 +36,9 @@ def take_in():
     tray_empty = False
     timeout = time.time() + 1   # One second from now.
 
-    print "Taking in a sheet..."
+    logging.info("Taking in a sheet...")
 
-    print "Rolling forward..."
+    logging.info("Rolling forward...")
     before_halfway = GPIO.input(HALFWAY_TRIGGER) # True if trigger depressed.
     while before_halfway:
         GPIO.output(MOTOR_ENABLE, True)
@@ -44,17 +46,18 @@ def take_in():
         GPIO.output(MOTOR_BACKWARD, False)
 
         if time.time() > timeout:
-            print "Tray is empty."
+            logging.info("Tray is empty.")
             tray_empty = True
             break
 
         before_halfway = GPIO.input(HALFWAY_TRIGGER) # True if trigger depressed.
 
-    print "Rolling backward..."
+    logging.info("Rolling backward...")
     time.sleep(.1)
     if not tray_empty:
         slow_motor()
     while not before_halfway:
+        GPIO.output(MOTOR_ENABLE, True)
         GPIO.output(MOTOR_FORWARD, False)
         GPIO.output(MOTOR_BACKWARD, True)
 
@@ -77,6 +80,8 @@ def slow_motor():
 
 def clean_up():
     """Roll backward to open tray, then shut down pins."""
+    GPIO.setup(MOTOR_ENABLE, GPIO.OUT)
+    GPIO.output(MOTOR_ENABLE, True)
     GPIO.output(MOTOR_FORWARD, False)
     GPIO.output(MOTOR_BACKWARD, True)
     time.sleep(1)
@@ -92,4 +97,5 @@ if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
+        logging.info('Keyboard interrupt.')
         clean_up()
