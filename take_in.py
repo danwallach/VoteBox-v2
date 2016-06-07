@@ -32,7 +32,7 @@ def setup():
 def take_in():
     """Take in all ballots."""
     tray_empty = False
-    timeout = time.time() + 1   # One seconds from now.
+    timeout = time.time() + 1   # One second from now.
 
     print "Taking in a sheet..."
 
@@ -67,7 +67,8 @@ def take_in():
 def slow_motor():
     """Slow down motor to make accept or reject decision."""
     GPIO.output(MOTOR_FORWARD, False)
-    p = GPIO.PWM(MOTOR_BACKWARD, 120)
+    GPIO.output(MOTOR_BACKWARD, True)
+    p = GPIO.PWM(MOTOR_ENABLE, 120)
     p.start(40)
     time.sleep(3)
     p.stop()
