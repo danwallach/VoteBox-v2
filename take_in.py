@@ -1,5 +1,4 @@
 import RPi.GPIO as GPIO
-
 import time
 
 """
@@ -83,8 +82,10 @@ def clean_up():
 
     GPIO.cleanup()
 
-# Main execution.
-setup()
-take_in()
-clean_up()
+def main():
+    setup()
+    take_in()
+    clean_up()
 
+if __name__ == '__main__':
+    main()
