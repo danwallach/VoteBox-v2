@@ -30,12 +30,13 @@ int main(void) {
         // Wait for scan for 2.5s before restarting scanner
         if(err = poll(&mypoll, 1, 2500)) {
             scanf("%31s", code);
-            printf("Code read: %s", code);
+            printf("%s", code);
         } else if (err < 0) {
             fprintf(stderr, "Error occurred reading: %s", strerror(errno));
-        } else {
-            printf("No code scanned\n");
-        }
+        } 
+        //else {
+        //    printf("No code scanned\n");
+        //}
 
         // Restart scanner. Wait 100ms to allow it to reset
         digitalWrite(25, LOW);
