@@ -1,12 +1,13 @@
 import RPi.GPIO as GPIO
-
 import time
+import logging
 
 """
 Takes in all ballots placed in tray. 
 
 Driven by the paper feeder of the HP Deskjet 1000 J110.
 """
+logging.basicConfig(level=logging.DEBUG)
 
 # Output pins.
 MOTOR_ENABLE = 17
@@ -18,44 +19,50 @@ HALFWAY_TRIGGER = 23
 
 def setup():
     """Set up the GPIO pins as input and output."""
-    print "Running Ballot Diverter V2."
+    logging.info("Running Ballot Diverter V2.")
 
-    print "Setting up pins..."
+    logging.info("Setting up pins...")
 
     GPIO.setmode(GPIO.BCM)
 
     GPIO.setup(MOTOR_ENABLE, GPIO.OUT)
+    pwm = GPIO.PWM(MOTOR_ENABLE, 120)
+    pwm.start(0)
+
     GPIO.setup(MOTOR_FORWARD, GPIO.OUT)
     GPIO.setup(MOTOR_BACKWARD, GPIO.OUT)
 
     GPIO.setup(HALFWAY_TRIGGER, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-def take_in():
+    return pwm
+
+def take_in(pwm):
     """Take in all ballots."""
     tray_empty = False
-    timeout = time.time() + 1   # One seconds from now.
+    timeout = time.time() + 1   # One second from now.
 
-    print "Taking in a sheet..."
+    logging.info("Taking in a sheet...")
 
-    print "Rolling forward..."
+    logging.debug("Rolling forward...")
     before_halfway = GPIO.input(HALFWAY_TRIGGER) # True if trigger depressed.
     while before_halfway:
-        GPIO.output(MOTOR_ENABLE, True)
+        pwm.ChangeDutyCycle(100)
         GPIO.output(MOTOR_FORWARD, True)
         GPIO.output(MOTOR_BACKWARD, False)
 
         if time.time() > timeout:
-            print "Tray is empty."
+            logging.info("Tray is empty.")
             tray_empty = True
             break
 
         before_halfway = GPIO.input(HALFWAY_TRIGGER) # True if trigger depressed.
 
-    print "Rolling backward..."
+    logging.debug("Rolling backward...")
     time.sleep(.1)
     if not tray_empty:
-        slow_motor()
+        slow_motor(pwm)
     while not before_halfway:
+        pwm.ChangeDutyCycle(100)
         GPIO.output(MOTOR_FORWARD, False)
         GPIO.output(MOTOR_BACKWARD, True)
 
@@ -63,28 +70,37 @@ def take_in():
     
     time.sleep(.1)
     if not tray_empty:
-        take_in()
+        take_in(pwm)
 
-def slow_motor():
+def slow_motor(pwm):
     """Slow down motor to make accept or reject decision."""
+    logging.debug('Slowing motor.')
+    pwm.ChangeDutyCycle(40)
     GPIO.output(MOTOR_FORWARD, False)
-    p = GPIO.PWM(MOTOR_BACKWARD, 120)
-    p.start(40)
+    GPIO.output(MOTOR_BACKWARD, True)
     time.sleep(3)
-    p.stop()
 
 
-
-def clean_up():
+def clean_up(pwm):
     """Roll backward to open tray, then shut down pins."""
+    logging.info('Cleaning up.')
+    pwm.ChangeDutyCycle(100)
     GPIO.output(MOTOR_FORWARD, False)
     GPIO.output(MOTOR_BACKWARD, True)
     time.sleep(1)
 
+    pwm.stop()
     GPIO.cleanup()
 
-# Main execution.
-setup()
-take_in()
-clean_up()
+def main():
+    pwm = setup()
+    take_in(pwm)
+    clean_up(pwm)
 
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        logging.info('Keyboard interrupt.')
+        pwm = setup()
+        clean_up(pwm)
