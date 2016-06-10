@@ -10,16 +10,26 @@
 
 url="https://hooks.slack.com/services/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"
 
-message="$(hostname) rebooted with IP address(es): `
-        `$(hostname --all-ip-addresses | sed -e 's/[[:space:]]*$//')."
 
 
-curl \
-    -X POST \
-    -H 'Content-type: application/json' \
-    "${url}" \
-    --data @- <<EOF
+send_message() {
+    message="$(hostname) rebooted with IP address(es): `
+    `$(hostname --all-ip-addresses | sed -e 's/[[:space:]]*$//')."
+
+    curl \
+        -X POST \
+        -H 'Content-type: application/json' \
+        "${url}" \
+        --data @- <<-EOF
     {
         "text": "${message}"
     }
-EOF
+	EOF
+}
+
+until send_message
+do
+    sleep 1
+done
+
+send_message
