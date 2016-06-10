@@ -1,6 +1,13 @@
 #!/bin/bash -x
 #
+# Overview:
 # Send message to #general channel on star-vote.slack.com when RPi reboots.
+# 
+# Setup instructions:
+# Create a symbolic link to /usr/local/bin.
+#   sudo ln -s /home/pi/VoteBox-v2/ping_slack /usr/local/bin
+# Append this line to the crontab. (Open with `crontab -e`).
+#   @reboot ping_slack
 
 json+='{"text":"applepi rebooted with IP address(es) '
 json+="$(hostname --all-ip-addresses | sed -e 's/[[:space:]]*$//')"
