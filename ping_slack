@@ -1,16 +1,25 @@
 #!/bin/bash -x
 #
-# Overview:
 # Send message to #general channel on star-vote.slack.com when RPi reboots.
 # 
-# Setup instructions:
-# Create a symbolic link to /usr/local/bin.
-#   sudo ln -s /home/pi/VoteBox-v2/ping_slack /usr/local/bin
-# Append this line to the crontab. (Open with `crontab -e`).
-#   @reboot ping_slack
+# Setup:
+#   Create a symbolic link to /usr/local/bin.
+#       `sudo ln -s /home/pi/VoteBox-v2/ping_slack /usr/local/bin`
+#   Append this line to the crontab. (Open with `crontab -e`).
+#       `@reboot ping_slack`
 
-json+='{"text":"applepi rebooted with IP address(es) '
-json+="$(hostname --all-ip-addresses | sed -e 's/[[:space:]]*$//')"
-json+='."}'
+url="https://hooks.slack.com/services/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"
 
-curl -X POST -H 'Content-type: application/json' --data "${json}" https://hooks.slack.com/services/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 --max-time 5
+message="$(hostname) rebooted with IP address(es): `
+        `$(hostname --all-ip-addresses | sed -e 's/[[:space:]]*$//')."
+
+
+curl \
+    -X POST \
+    -H 'Content-type: application/json' \
+    "${url}" \
+    --data @- <<EOF
+    {
+        "text": "${message}"
+    }
+EOF
