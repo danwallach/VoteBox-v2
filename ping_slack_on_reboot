@@ -1,6 +1,9 @@
-#!/bin/bash
+#!/bin/bash -x
 #
 # Send message to #general channel on star-vote.slack.com when RPi reboots.
 
-echo 'Sending "Raspberry Pi rebooted." to Slack.'
-curl -X POST -H 'Content-type: application/json' --data '{"text":"Raspberry Pi rebooted."}' https://hooks.slack.com/services/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 --max-time 5
+json+='{"text":"applepi rebooted with IP address(es) '
+json+="$(hostname --all-ip-addresses | sed -e 's/[[:space:]]*$//')"
+json+='."}'
+
+curl -X POST -H 'Content-type: application/json' --data "${json}" https://hooks.slack.com/services/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 --max-time 5
