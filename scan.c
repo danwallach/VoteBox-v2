@@ -1,12 +1,26 @@
 /*
- * Note: to compile, include argument -lwiringPi, e.g.
- *  gcc scan.c -o scan -lwiringPi
+ * Usage:
+ *  scan [timeout in seconds]
+ * 
+ * Examples:
+ *  Scan code, no timeout
+ *      sudo ./scan
+ *  Scan code, 5 second timeout
+ *      sudo ./scan 5
+ * 
+ * Description:
+ *  Scans a code using the barcode scanner on pin 25. Continues
+ *  until code is successfully read or an error occurs. Valid code
+ *  is printed to standard output.
+ * 
+ * Notes:
+ *  To compile, include argument -lwiringPi, e.g.
+ *      gcc scan.c -o scan -lwiringPi
  *
- * Due to requirements of wiringPi, this program must be run as root.
+ *  Due to requirements of wiringPi, this program must be run as root.
  *
- * Scans a code using the barcode scanner on pin 25. Continues
- * until code is successfully read or an error occurs. Valid code
- * is printed to standard output.
+ * Author:
+ *  Jerry Lue
  */
 #include <stdio.h>
 #include <poll.h>
@@ -19,6 +33,7 @@
 #include <sys/ioctl.h>
 #include <fcntl.h>
 #include <linux/input.h>
+#include <limits.h>
 
 #define MAXCODE 64
 
@@ -66,24 +81,23 @@ char keymap(int code) {
     }
 }
 
-int main(void) {
+int scan(const int tries) { 
     int scanfd = open(device, O_RDONLY); 
     FILE *scanst = fdopen(scanfd, "r");
     struct pollfd mypoll = { scanfd, POLLIN|POLLPRI };
     char code[MAXCODE];
-    int err = 0, readstatus = 0, codecounter = 0;
+    int err = 0, readstatus = 0, codecounter = 0, trycount = 0;
     struct input_event keyevent;
 
     ioctl(scanfd, EVIOCGRAB, (void *) 1); // get exclusive access to scanner
     wiringPiSetupGpio(); // BCM pin numbering
     pinMode(25, OUTPUT);
-
     // Loop until code read or error occurs
-    while (!err) {
+    while (trycount < tries && !err) {
         // Turn on scanner
         digitalWrite(25, HIGH);
         // Wait for scan for 2.5s before restarting scanner
-        if(err = poll(&mypoll, 1, 2000)) {
+        if(err = poll(&mypoll, 1, 920)) {
             while ((readstatus = read(scanfd, &keyevent, sizeof(keyevent))) >= 0) {
                 #ifdef DEBUG
                 printf("Read returned: %d; ", readstatus);
@@ -119,9 +133,21 @@ int main(void) {
         //    printf("No code scanned\n");
         //}
 
-        // Restart scanner. Wait 100ms to allow it to reset
+        // Restart scanner. Wait 50ms to allow it to reset
         digitalWrite(25, LOW);
-        usleep(100000);
+        usleep(80000);
+        trycount ++;
     }
     return 0;
+}
+
+int main(int argc, char *argv[]) {
+    switch (argc) {
+        case 1:
+            return scan(INT_MAX);
+        case 2:
+            return scan(atoi(argv[1]));
+        default:
+            return scan(INT_MAX);
+    }
 }
