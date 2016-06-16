@@ -131,6 +131,7 @@ VM running in Vagrant/Virtualbox on the host system. Fully emulated compilation 
 pay for one's sanity.
 
 On host machine (x86_64 ubuntu):
+
 1. Get the scratchbox2/qemu RPi VM box
 
     `$ git clone https://github.com/luejerry/raspberry-devbox`
