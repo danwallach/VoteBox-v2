@@ -35,10 +35,12 @@
 #include <linux/input.h>
 #include <limits.h>
 
-#define MAXCODE 64
+#define MAXCODE 64 // scan buffer size
 
+// key event device of scanner
 char *device = "/dev/input/by-id/usb-WIT_Electron_Company_WIT_122-UFS_V2.03-event-kbd";
 
+// maps linux keycodes to ascii chars
 char keymap(int code) {
     switch (code) {
         case KEY_1: return '1';
@@ -97,7 +99,7 @@ int scan(const int tries) {
         // Turn on scanner
         digitalWrite(25, HIGH);
         // Wait for scan for 2.5s before restarting scanner
-        if(err = poll(&mypoll, 1, 920)) {
+        if(err = poll(&mypoll, 1, 800)) {
             while ((readstatus = read(scanfd, &keyevent, sizeof(keyevent))) >= 0) {
                 #ifdef DEBUG
                 printf("Read returned: %d; ", readstatus);
@@ -128,14 +130,14 @@ int scan(const int tries) {
             fprintf(stderr, "Error occurred polling: %s", strerror(errno));
             digitalWrite(25, LOW);
             return -1;
-        } 
+        }
         //else {
         //    printf("No code scanned\n");
         //}
 
         // Restart scanner. Wait 50ms to allow it to reset
         digitalWrite(25, LOW);
-        usleep(80000);
+        usleep(200000);
         trycount ++;
     }
     return 0;
