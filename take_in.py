@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import logging
+from subprocess import call
 
 """
 Takes in all ballots placed in tray. 
@@ -79,6 +80,9 @@ def slow_motor(pwm):
     GPIO.output(MOTOR_FORWARD, False)
     GPIO.output(MOTOR_BACKWARD, True)
     time.sleep(3)
+
+    logging.info('Firing scanner for three seconds.')
+    call(["./scan", "3"])
 
 
 def clean_up(pwm):
