@@ -1,7 +1,14 @@
+#!/usr/bin/env python
+
 import RPi.GPIO as GPIO
 import time
 import logging
 from subprocess import call
+
+# To relaunch script as sudo.
+# See https://gist.github.com/davejamesmiller/1965559
+import os
+import sys
 
 """
 Takes in all ballots placed in tray. 
@@ -103,6 +110,8 @@ def main():
 
 if __name__ == '__main__':
     try:
+        if os.geteuid() != 0:
+            os.execvp("sudo", ["sudo"] + sys.argv)
         main()
     except KeyboardInterrupt:
         logging.info('Keyboard interrupt.')
