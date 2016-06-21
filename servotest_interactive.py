@@ -1,3 +1,12 @@
+"""
+Sets servomotor angle from user input.
+
+Example usage:
+    python servotest_interactive.py
+
+Author: Jerry Lue
+"""
+
 import RPi.GPIO as GPIO
 import rpi_servodriver as sdriver
 import sys
@@ -17,7 +26,7 @@ def main():
             sdriver.stop(servo)
             GPIO.cleanup()
             sys.exit()
-
+    return
 
 if __name__ == "__main__":
     main()
