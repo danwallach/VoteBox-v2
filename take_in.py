@@ -3,12 +3,14 @@
 import RPi.GPIO as GPIO
 import time
 import logging
-from subprocess import call
+import subprocess
 
 # To relaunch script as sudo.
 # See https://gist.github.com/davejamesmiller/1965559
 import os
 import sys
+
+import diverter
 
 """
 Takes in all ballots placed in tray. 
@@ -47,6 +49,7 @@ def setup():
 def take_in(pwm):
     """Take in all ballots."""
     tray_empty = False
+    diverter.up()
     timeout = time.time() + 1   # One second from now.
 
     logging.info("Taking in a sheet...")
@@ -89,7 +92,14 @@ def slow_motor(pwm):
     time.sleep(3)
 
     logging.info('Firing scanner for three seconds.')
-    call(["./scan", "3"])
+    # call(["./scan", "3"])
+    # scan = Popen(["./scan", "3"], stdout=PIPE)
+    # output, err = p.communicate()
+    barcode = subprocess.check_output(["./scan", "3"])
+
+    if barcode:
+        logging.info('Barcode read. Drawbridge down.')
+        diverter.down()
 
 
 def clean_up(pwm):
