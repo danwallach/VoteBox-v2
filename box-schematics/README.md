@@ -1,0 +1,1 @@
+Mockup of ballot box v2 enclosure design.
