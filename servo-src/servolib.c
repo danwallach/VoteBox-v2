@@ -35,6 +35,17 @@ void hd6001_move(int pos) {
     servo_move(pos + 40);
 }
 
+/*
+ * Move a Futaba S3003 servo.
+ *
+ * For the S3003 servo, raw input ranges from 20 (0.4 ms) to 120
+ * (2.35 ms), which translates to a range of 0-100 for the input here.
+ * Values outside this range may be used but response is not guaranteed.
+ */
+void s3003_move(int pos) {
+    servo_move(pos + 20);
+}
+
 void servo_interactive() {
     while (1) {
         char input[6];
@@ -42,6 +53,6 @@ void servo_interactive() {
         printf("Enter servo value (0-1024): ");
         fgets(input, 6, stdin);
         value = atoi(input);
-        servo_move(value);
+        s3003_move(value);
     }
 }
