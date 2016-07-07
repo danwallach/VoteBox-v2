@@ -10,6 +10,7 @@ import subprocess
 import os
 import sys
 
+import config
 import diverter
 
 """
@@ -44,6 +45,9 @@ def setup():
 
     GPIO.setup(HALFWAY_TRIGGER, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+    loggin.info("Brocasting status - 'Waiting.'")
+    status = Status.waiting
+
     return pwm
 
 def take_in(pwm):
@@ -53,6 +57,9 @@ def take_in(pwm):
     timeout = time.time() + 1   # One second from now.
 
     logging.info("Taking in a sheet...")
+
+    logging.info("Broacasting status - 'Pending.'")
+    status = Status.pending
 
     logging.debug("Rolling forward...")
     before_halfway = GPIO.input(HALFWAY_TRIGGER) # True if trigger depressed.
@@ -100,6 +107,12 @@ def slow_motor(pwm):
     if barcode:
         logging.info('Barcode read. Drawbridge down.')
         diverter.down()
+
+        loggin.info("Brocasting status - 'Accept.'")
+        status = Status.accept
+    else:
+        loggin.info("Broacasting status - 'Reject.'")
+        status = Status.reject
 
 
 def clean_up(pwm):
