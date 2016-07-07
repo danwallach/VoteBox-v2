@@ -1,5 +1,5 @@
 """
-Diverter control module for vote box, calibrated for Futaba S3003 servo.
+Diverter control module for vote box, calibrated for HD 6001HB servo.
 Example usage:
     
 import diverter
@@ -24,7 +24,7 @@ Moves diverter up.
 def up():
     GPIO.setmode(GPIO.BCM)
     servo = sdriver.init(SERVO_PIN)
-    sdriver.start(servo, 0)
+    sdriver.start(servo, 0.5)
     time.sleep(1)
     sdriver.stop(servo)
     return
@@ -35,7 +35,7 @@ Moves diverter down.
 def down():
     GPIO.setmode(GPIO.BCM)
     servo = sdriver.init(SERVO_PIN)
-    sdriver.start(servo, 0.7)
+    sdriver.start(servo, 1.0)
     time.sleep(1)
     sdriver.stop(servo)
     return
