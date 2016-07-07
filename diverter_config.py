@@ -1,0 +1,1 @@
+SERVO_MODEL = "6001HB" # either 6001HB or S3003
