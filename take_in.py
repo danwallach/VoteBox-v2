@@ -45,8 +45,8 @@ def setup():
 
     GPIO.setup(HALFWAY_TRIGGER, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-    loggin.info("Brocasting status - 'Waiting.'")
-    status = Status.waiting
+    logging.info("Brocasting status - 'Waiting.'")
+    config.status = "waiting"
 
     return pwm
 
@@ -59,7 +59,7 @@ def take_in(pwm):
     logging.info("Taking in a sheet...")
 
     logging.info("Broacasting status - 'Pending.'")
-    status = Status.pending
+    config.status = "pending"
 
     logging.debug("Rolling forward...")
     before_halfway = GPIO.input(HALFWAY_TRIGGER) # True if trigger depressed.
@@ -109,10 +109,10 @@ def slow_motor(pwm):
         diverter.down()
 
         loggin.info("Brocasting status - 'Accept.'")
-        status = Status.accept
+        config.status = "accept"
     else:
         loggin.info("Broacasting status - 'Reject.'")
-        status = Status.reject
+        config.status = "reject"
 
 
 def clean_up(pwm):
