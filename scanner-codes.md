@@ -140,9 +140,9 @@ ADF actions:
 | Token | Definition |
 | ----- | ---------- |
 | LOAD  | Load sheet |
-| EJECT | Eject sheet |
+| EJCT  | Eject sheet |
 | CLEN  | Clean |
-| CALB  | Calibrate/clean |
+| CALB  | Calibrate |
 
 FCS actions:
 
