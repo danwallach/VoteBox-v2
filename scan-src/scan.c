@@ -42,7 +42,16 @@
 // key event device of scanner
 char *device = "/dev/input/by-id/usb-WIT_Electron_Company_WIT_122-UFS_V2.03-event-kbd";
 
-// maps linux keycodes to ascii chars
+/* 
+ * Map linux keycodes to ASCII characters
+ * 
+ * Params:
+ *  code    Linux keycode (from input.h)
+ *  shift   Case flag (0: lowercase, 1: uppercase)
+ *
+ * Returns:
+ *  ASCII character corresponding to keycode and shiftkey state
+ */
 char keymap(int code, int shift) {
     if (shift) {
         switch (code) {
@@ -151,6 +160,15 @@ char keymap(int code, int shift) {
     }
 }
 
+/*
+ * Scan barcode.
+ *
+ * Params:
+ *  tries   Number of tries (each try = 1 second) to attempt scan
+ *
+ * Returns:
+ *  0 on success, -1 on error
+ */
 int scan(const int tries) { 
     char code[MAXCODE];
     int scanfd = open(device, O_RDONLY); 
