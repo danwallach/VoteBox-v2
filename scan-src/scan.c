@@ -11,7 +11,8 @@
  * Description:
  *  Scans a code using the barcode scanner on pin 25. Continues
  *  until code is successfully read or an error occurs. Valid code
- *  is printed to standard output.
+ *  is printed to standard output. All printable non-whitespace characters
+ *  of ASCII are supported.
  * 
  * Notes:
  *  To compile, include argument -lwiringPi, e.g.
@@ -79,7 +80,7 @@ char keymap(int code, int shift) {
             case KEY_K: return 'K';
             case KEY_L: return 'L';
             case KEY_SEMICOLON: return ':';
-            case KEY_APOSTROPHE: return '"';
+            case KEY_APOSTROPHE: return '\"';
             case KEY_GRAVE: return '~';
             case KEY_BACKSLASH: return '|';
             case KEY_Z: return 'Z';
@@ -91,8 +92,9 @@ char keymap(int code, int shift) {
             case KEY_M: return 'M';
             case KEY_COMMA: return '<';
             case KEY_DOT: return '>';
-            case KEY_SLASH: return '?';
-            default: return ' ';
+            case KEY_SLASH: return '\?';
+            case KEY_SPACE: return ' ';
+            default: return 0;
         }
     } else {
         switch (code) {
@@ -143,7 +145,8 @@ char keymap(int code, int shift) {
             case KEY_COMMA: return ',';
             case KEY_DOT: return '.';
             case KEY_SLASH: return '/';
-            default: return ' ';
+            case KEY_SPACE: return ' ';
+            default: return 0;
         }
     }
 }
@@ -190,8 +193,8 @@ int scan(const int tries) {
                         if (keyevent.code == KEY_LEFTSHIFT || 
                                 keyevent.code == KEY_RIGHTSHIFT) {
                             shift = 1;
-                        // Convert keycode to ascii char
-                        } else {
+                        // Convert a recognized keycode to ascii char
+                        } else if (keymap(keyevent.code, shift) != 0) {
                             code[codecounter] = keymap(keyevent.code, shift);
                             codecounter++;
                         }
