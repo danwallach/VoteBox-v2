@@ -66,6 +66,7 @@ Hardware location of error:
 Nature of error:
 
 | Token | Definition |
+| ----- | ---------- |
 | OPN   | |
 | PJ    | Paper jam |
 | PE    | |
