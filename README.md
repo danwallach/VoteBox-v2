@@ -6,6 +6,7 @@ An improved version of the original [Vote Box](https://github.com/danwallach/Vot
 *   `box-schematics` CAD schematics of mechanical components
 *   `circuitdiagram` Electronic circuit diagrams
 *   `scan-src` Source files for barcode scanner module
+*   `servo-src` Source files for hardware PWM servo module (experimental)
 
 ## Files
 ### Core Programs
@@ -13,6 +14,10 @@ An improved version of the original [Vote Box](https://github.com/danwallach/Vot
 *   `diverter.py` Diverter control library
 *   `rpi_servodriver.py` Servomotor control library
 *   `scan` Barcode scanner program
+
+### Configuration Files
+*   `config.py` Config options for main program
+*   `diverter_config.py` Config options for diverter controller
 
 ### Testing Programs
 *   `servotest.py` Servomotor library test program

@@ -13,7 +13,6 @@ pin 25. Run `scan` as root.
 On successful code read, the program prints the code followed by a newline to
 `stdout` and exits. Nothing is printed if no code is read.
 
-## Notes/Todo
-As of 6/23/2016, `scan` can only process case-insensitive alphanumeric
-characters. Capital letters read are output as lowercase and all symbols are
-replaced with an underscore (`_`).
+## Notes
+Only printable ASCII characters and the space character are supported. Should
+be good for Code 128 and below.
