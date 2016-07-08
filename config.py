@@ -1,4 +1,2 @@
-from enum import Enum
-
-Status = Enum('Status', 'waiting pending accept reject')
+# VoteBox devices state: (waiting, pending, accept, reject).
 status = None
