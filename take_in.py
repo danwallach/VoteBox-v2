@@ -108,10 +108,10 @@ def slow_motor(pwm):
         logging.info('Barcode read. Drawbridge down.')
         diverter.down()
 
-        loggin.info("Brocasting status - 'Accept.'")
+        logging.info("Brocasting status - 'Accept.'")
         config.status = "accept"
     else:
-        loggin.info("Broacasting status - 'Reject.'")
+        logging.info("Broacasting status - 'Reject.'")
         config.status = "reject"
 
 
