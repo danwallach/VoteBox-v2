@@ -113,6 +113,7 @@ def slow_motor(pwm):
     else:
         logging.info("Broacasting status - 'Reject.'")
         config.status = "reject"
+        time.sleep(5) # allow time for reject message to play
 
 
 def clean_up(pwm):
