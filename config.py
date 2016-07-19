@@ -18,6 +18,10 @@ class StatusRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(status)
         
+class TCPServer_nowait(SocketServer.TCPServer):
+    def server_bind(self):
+        self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self.socket.bind(self.server_address)
 
-
-httpd = SocketServer.TCPServer(('', 80), StatusRequestHandler)
+#httpd = SocketServer.TCPServer(('', 80), StatusRequestHandler)
+httpd = TCPServer_nowait(('', 80), StatusRequestHandler)
