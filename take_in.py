@@ -21,8 +21,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 # Output pins.
 MOTOR_ENABLE = 17
-MOTOR_FORWARD = 27
-MOTOR_BACKWARD = 22
+MOTOR_FORWARD = 22
+MOTOR_BACKWARD = 27
 
 # Input pins.
 HALFWAY_TRIGGER = 23
