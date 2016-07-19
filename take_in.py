@@ -37,7 +37,7 @@ def setup():
     GPIO.setmode(GPIO.BCM)
 
     GPIO.setup(MOTOR_ENABLE, GPIO.OUT)
-    pwm = GPIO.PWM(MOTOR_ENABLE, 120)
+    pwm = GPIO.PWM(MOTOR_ENABLE, 20)
     pwm.start(0)
 
     GPIO.setup(MOTOR_FORWARD, GPIO.OUT)
@@ -112,8 +112,11 @@ def slow_motor(pwm):
         config.status = "accept"
     else:
         logging.info("Broacasting status - 'Reject.'")
+        pwm.ChangeDutyCycle(100)
+        time.sleep(2.5)
+        pwm.ChangeDutyCycle(0)
         config.status = "reject"
-        time.sleep(5) # allow time for reject message to play
+        time.sleep(8) # allow time for reject message to play
 
 
 def clean_up(pwm):
