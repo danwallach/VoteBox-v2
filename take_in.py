@@ -114,7 +114,7 @@ def slow_motor(pwm):
         logging.info("Broacasting status - 'Reject.'")
         diverter.up()
         pwm.ChangeDutyCycle(100)
-        time.sleep(2)
+        time.sleep(1)
         pwm.ChangeDutyCycle(0)
         config.status = "reject"
         time.sleep(10) # allow time for reject message to play
