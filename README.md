@@ -10,7 +10,9 @@ An improved version of the original [Vote Box](https://github.com/danwallach/Vot
 
 ## Files
 ### Core Programs
-*   `take_in.py` Main paper intake and sorting routine
+*   `votebox.py` Main routine
+*   `status_server.py` Ballot box status server for use with web frontend
+*   `take_in.py` Paper intake and sorting routine
 *   `diverter.py` Diverter control library
 *   `rpi_servodriver.py` Servomotor control library
 *   `scan` Barcode scanner program
@@ -25,6 +27,7 @@ An improved version of the original [Vote Box](https://github.com/danwallach/Vot
 
 ### Documentation
 *   `network-notes.md` Documentation of Epson DS-510 driver hacking
+*   `scanner-codes.md` Documentation of Epson ESCI/2 scanner communication protocol
 
 ### Miscellaneous
 *   `ping_slack` Script that sends device IP to Slack chat
