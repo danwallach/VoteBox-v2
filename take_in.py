@@ -22,8 +22,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 # Output pins.
 MOTOR_ENABLE = 17
-MOTOR_FORWARD = 27
-MOTOR_BACKWARD = 22
+MOTOR_FORWARD = 22
+MOTOR_BACKWARD = 27
 
 # Input pins.
 HALFWAY_TRIGGER = 23
@@ -37,7 +37,7 @@ def setup():
     GPIO.setmode(GPIO.BCM)
 
     GPIO.setup(MOTOR_ENABLE, GPIO.OUT)
-    pwm = GPIO.PWM(MOTOR_ENABLE, 120)
+    pwm = GPIO.PWM(MOTOR_ENABLE, 50)
     pwm.start(0)
 
     GPIO.setup(MOTOR_FORWARD, GPIO.OUT)
@@ -93,16 +93,16 @@ def take_in(pwm):
 def slow_motor(pwm):
     """Slow down motor to make accept or reject decision."""
     logging.debug('Slowing motor.')
-    pwm.ChangeDutyCycle(40)
+    pwm.ChangeDutyCycle(25)
     GPIO.output(MOTOR_FORWARD, False)
     GPIO.output(MOTOR_BACKWARD, True)
-    time.sleep(3)
+    # time.sleep(3)
 
     logging.info('Firing scanner for three seconds.')
     # call(["./scan", "3"])
     # scan = Popen(["./scan", "3"], stdout=PIPE)
     # output, err = p.communicate()
-    barcode = subprocess.check_output(["./scan", "3"])
+    barcode = subprocess.check_output(["./scan", "5"])
 
     if barcode:
         logging.info('Barcode read. Drawbridge down.')
@@ -112,7 +112,12 @@ def slow_motor(pwm):
         config.status = "accept"
     else:
         logging.info("Broacasting status - 'Reject.'")
+        diverter.up()
+        pwm.ChangeDutyCycle(100)
+        time.sleep(1)
+        pwm.ChangeDutyCycle(0)
         config.status = "reject"
+        time.sleep(10) # allow time for reject message to play
 
 
 def clean_up(pwm):
