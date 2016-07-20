@@ -105,8 +105,8 @@ Nature of error:
 
 | Token | Definition |
 | ----- | ---------- |
-| OK    | |
-| FAIL  | |
+| OK    | Parameters set successfully |
+| FAIL  | Failed to set parameters |
 | LOST  | |
 
 ## Value tokens
