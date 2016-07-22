@@ -63,3 +63,6 @@ target/
 
 # Windows indexing files
 Thumbs.db
+
+# Mac indexing files
+.DS_Store
