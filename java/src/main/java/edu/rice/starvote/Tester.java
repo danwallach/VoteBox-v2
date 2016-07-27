@@ -6,6 +6,7 @@ package edu.rice.starvote;
 public class Tester {
 
     public static void main(String[] args) {
-        IPWMDriver driver = PWMPython.init(20, 20, 20);
+        final String cat = ExternalProcess.runAndCapture("cat", "/dev/null");
+        System.out.println(cat.length());
     }
 }
