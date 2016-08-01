@@ -1,0 +1,22 @@
+*Pick And Place List
+*Company=
+*Author=
+*eMail=
+*
+*Project=rpimount
+*Date=17:39:16
+*CreatedBy=Fritzing 0.9.2b.11.19.8d2d5970658f0bed09c661c9ea9a515b5f40f44c
+*
+*
+*Coordinates in mm, always center of component
+*Origin 0/0=Lower left corner of PCB
+*Rotation in degree (0-360, math. pos.)
+*
+*No;Value;Package;X;Y;Rotation;Side;Name
+1;;;79.6475;-3.11762;0;Bottom;Hole7
+2;;;4.1002;-93.0139;0;Bottom;Hole1
+3;;;78.6634;-51.7019;0;Bottom;Hole6
+4;;;53.0199;-92.9673;0;Bottom;Hole2
+5;;;37.9034;-89.1014;0;Bottom;Hole3
+6;;;53.1004;-34.9538;0;Bottom;Hole5
+7;;;4.11149;-34.9694;0;Bottom;Hole4
