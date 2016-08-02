@@ -18,10 +18,10 @@ public class Monitor {
     public void run() {
         while (true) {
             listener.waitForEvent(PinEdge.FALLING, () -> {
+                System.out.println("Paper detected");
                 if (spooler.getStatus() != DeviceStatus.READY) {
                     System.out.println("Device " + spooler.getStatus());
                 } else {
-                    System.out.println("Paper detected");
                     while (listener.getState().isLow()) {
                         System.out.println("Spooling in page");
                         spooler.takeIn();

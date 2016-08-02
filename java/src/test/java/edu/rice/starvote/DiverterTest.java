@@ -13,6 +13,7 @@ public class DiverterTest {
         Thread.sleep(1000);
         diverter.down();
         Thread.sleep(1000);
-
+        diverter.up();
+        Thread.sleep(1000);
     }
 }

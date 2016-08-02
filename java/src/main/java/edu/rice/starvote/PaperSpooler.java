@@ -48,6 +48,11 @@ public class PaperSpooler implements ISpooler {
         // Register the event listener
         if (!halfwaySensor.waitForEvent(PinEdge.FALLING, () -> {
             System.out.println("Paper taken in, beginning scan");
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                System.err.println(e.toString());
+            }
             motor.reverseSlow();
             String code = scanner.scan(SCANTIME);
             // TODO: add delays for accept/reject messages
@@ -80,6 +85,12 @@ public class PaperSpooler implements ISpooler {
                 // Paper still in spooler
                 System.out.println("Spooler jammed");
                 motor.stop();
+                motor.reverse();
+                try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e) {
+                    System.err.println(e.toString());
+                }
                 status = DeviceStatus.ERROR;
                 statusUpdater.pushStatus(BallotStatus.OFFLINE);
                 signalDone.countDown();
