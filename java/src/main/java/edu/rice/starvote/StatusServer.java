@@ -21,7 +21,7 @@ public class StatusServer {
             response.header("Access-Control-Allow-Origin", "*");
             response.header("Content-type", "text/html");
             response.body(status.toString());
-            return response;
+            return response.toString();
         });
     }
 
