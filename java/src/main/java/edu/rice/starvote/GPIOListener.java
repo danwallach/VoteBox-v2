@@ -10,13 +10,13 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by luej on 7/20/16.
  */
-public class PaperListener {
+public class GPIOListener {
 
     // Paper sensor is on bcm gpio24, or wiringpi 5
     private final Pin wpiPin;
     private final GpioPinDigitalInput sensor;
 
-    public PaperListener(int pin) {
+    public GPIOListener(int pin) {
         wpiPin = PinMap.mapPin(pin).get();
         sensor = GPIOManager.controller().provisionDigitalInputPin(wpiPin);
     }

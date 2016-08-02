@@ -16,11 +16,11 @@ public class PaperSpooler implements ISpooler {
     private final IStatusUpdate statusUpdater;
     private final IDiverter diverter;
     private final IMotor motor;
-    private final PaperListener halfwaySensor;
+    private final GPIOListener halfwaySensor;
     private final IScanner scanner;
     private final IValidator validator;
 
-    public PaperSpooler(IStatusUpdate statusUpdater, IDiverter diverter, IMotor motor, PaperListener halfwaySensor, IScanner scanner,
+    public PaperSpooler(IStatusUpdate statusUpdater, IDiverter diverter, IMotor motor, GPIOListener halfwaySensor, IScanner scanner,
                         IValidator validator) {
         this.statusUpdater = statusUpdater;
         this.diverter = diverter;

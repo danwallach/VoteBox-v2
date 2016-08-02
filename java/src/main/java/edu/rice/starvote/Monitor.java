@@ -7,10 +7,10 @@ import com.pi4j.io.gpio.PinEdge;
  */
 public class Monitor {
 
-    private final PaperListener listener;
+    private final GPIOListener listener;
     private final ISpooler spooler;
 
-    public Monitor(PaperListener listener, ISpooler spooler) {
+    public Monitor(GPIOListener listener, ISpooler spooler) {
         this.listener = listener;
         this.spooler = spooler;
     }
