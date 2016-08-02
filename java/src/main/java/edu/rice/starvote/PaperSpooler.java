@@ -81,7 +81,7 @@ public class PaperSpooler implements ISpooler {
             if (!halfwaySensor.waitForEvent(PinEdge.RISING, () -> {
                 System.out.println("Spooler cleared");
                 try {
-                    TimeUnit.MILLISECONDS.sleep(100);
+                    TimeUnit.MILLISECONDS.sleep(500);
                 } catch (InterruptedException ignored) {}
                 motor.stop();
                 status = DeviceStatus.READY;

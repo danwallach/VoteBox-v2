@@ -110,7 +110,7 @@
             <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="190">
-                  <caret line="77" column="47" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
+                  <caret line="83" column="49" selection-start-line="83" selection-start-column="49" selection-end-line="83" selection-end-column="49" />
                   <folding />
                 </state>
               </provider>
@@ -228,8 +228,8 @@
                 <state relative-caret-position="145">
                   <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
                   <folding>
-                    <element signature="e#1098#1099#0" expanded="true" />
-                    <element signature="e#1153#1154#0" expanded="true" />
+                    <element signature="e#1107#1108#0" expanded="true" />
+                    <element signature="e#1162#1163#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -1720,7 +1720,7 @@
       <workItem from="1469125298825" duration="149000" />
       <workItem from="1469125485658" duration="26196000" />
       <workItem from="1470167704056" duration="1608000" />
-      <workItem from="1470170862896" duration="6153000" />
+      <workItem from="1470170862896" duration="6246000" />
     </task>
     <servers />
   </component>
@@ -1736,7 +1736,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44084000" />
+    <option name="totallyTimeSpent" value="44177000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="23" width="1359" height="877" extended-state="0" />
@@ -2177,8 +2177,8 @@
         <state relative-caret-position="145">
           <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
           <folding>
-            <element signature="e#1098#1099#0" expanded="true" />
-            <element signature="e#1153#1154#0" expanded="true" />
+            <element signature="e#1107#1108#0" expanded="true" />
+            <element signature="e#1162#1163#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2202,7 +2202,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="77" column="47" selection-start-line="77" selection-start-column="47" selection-end-line="77" selection-end-column="47" />
+          <caret line="83" column="49" selection-start-line="83" selection-start-column="49" selection-end-line="83" selection-end-column="49" />
           <folding />
         </state>
       </provider>
