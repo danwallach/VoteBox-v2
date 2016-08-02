@@ -15,7 +15,7 @@ public class StatusServer {
     }
 
     private void setRoutes() {
-        get("/", (request, response) -> {
+        get("/status", (request, response) -> {
             final BallotStatus status = this.statusProvider.getStatus();
             response.status(200);
             response.header("Access-Control-Allow-Origin", "*");
