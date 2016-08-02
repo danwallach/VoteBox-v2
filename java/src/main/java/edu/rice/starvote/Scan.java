@@ -10,6 +10,6 @@ public class Scan implements IScanner {
     final static File wd = new File(Scan.class.getClassLoader().getResource("scan").getPath()).getParentFile();
 
     public String scan(int timeout) {
-        return ExternalProcess.runInDirAndCapture(wd, "scan", String.valueOf(timeout));
+        return ExternalProcess.runInDirAndCapture(wd, "./scan", String.valueOf(timeout));
     }
 }
