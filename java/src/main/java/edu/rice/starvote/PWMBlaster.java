@@ -17,7 +17,7 @@ public class PWMBlaster implements IPWMDriver {
 
     private static void writePWM(String data) {
         try {
-            Files.write(pwmpath, data.getBytes(Charset.forName("UTF-8")));
+            Files.write(pwmpath, (data + "\n").getBytes(Charset.forName("UTF-8")));
         } catch (IOException e) {
             System.err.println(e.toString());
         }
