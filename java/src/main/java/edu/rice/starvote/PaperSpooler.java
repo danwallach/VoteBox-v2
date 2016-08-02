@@ -72,6 +72,11 @@ public class PaperSpooler implements ISpooler {
                     diverter.up();
                 }
             }
+            try {
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (InterruptedException e) {
+                System.err.println(e.toString());
+            }
             motor.reverse();
             if (!halfwaySensor.waitForEvent(PinEdge.RISING, () -> {
                 System.out.println("Spooler cleared");
@@ -85,13 +90,13 @@ public class PaperSpooler implements ISpooler {
             }, 2000)) {
                 // Paper still in spooler
                 System.out.println("Spooler jammed");
-                motor.stop();
                 motor.reverse();
                 try {
                     TimeUnit.SECONDS.sleep(2);
                 } catch (InterruptedException e) {
                     System.err.println(e.toString());
                 }
+                motor.stop();
                 status = DeviceStatus.ERROR;
                 statusUpdater.pushStatus(BallotStatus.OFFLINE);
                 signalDone.countDown();
