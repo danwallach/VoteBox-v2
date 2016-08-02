@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91ee909f-5926-4df1-add8-b6373838366a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java" afterPath="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/rice/starvote/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/edu/rice/starvote/Controller.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMBlaster.java" afterPath="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMBlaster.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/pwm.py" afterPath="$PROJECT_DIR$/src/main/resources/pwm.py" />
     </list>
     <ignored path="ballotbox.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -106,11 +109,11 @@
     <splitter split-orientation="vertical" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="PaperSpooler.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="PaperSpooler.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="97" column="12" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
+                <state relative-caret-position="105">
+                  <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
@@ -156,11 +159,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="PrinterMotor.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="PrinterMotor.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PrinterMotor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="45">
-                  <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+                <state relative-caret-position="160">
+                  <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -176,11 +179,21 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="IMotor.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/IMotor.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="150">
+                  <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="pwm.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/resources/pwm.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="135">
-                  <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+                  <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
                   <folding>
                     <element signature="e#0#23#0" expanded="true" />
                   </folding>
@@ -195,9 +208,22 @@
           <file leaf-file-name="PWMPython.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMPython.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="265">
+                <state relative-caret-position="660">
                   <caret line="44" column="69" selection-start-line="44" selection-start-column="69" selection-end-line="44" selection-end-column="69" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PWMBlaster.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMBlaster.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="490">
+                  <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+                  <folding>
+                    <element signature="e#1098#1099#0" expanded="true" />
+                    <element signature="e#1153#1154#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -214,11 +240,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/Controller.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-125">
-                  <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+                <state relative-caret-position="130">
+                  <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
                   <folding />
                 </state>
               </provider>
@@ -254,7 +280,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Monitor.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Monitor.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/Monitor.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="205">
@@ -267,8 +293,8 @@
           <file leaf-file-name="PaperListener.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperListener.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="435">
-                  <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
+                <state relative-caret-position="730">
+                  <caret line="70" column="13" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -660,7 +686,6 @@
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/IValidator.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMDriver.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/IPWMDriver.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMBlaster.java" />
         <option value="$PROJECT_DIR$/build/resources/main/pwm.py" />
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/IGPIOListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/GPIOManager.java" />
@@ -673,9 +698,7 @@
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/Tester.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PrinterMotor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMPython.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/pwm.py" />
         <option value="$PROJECT_DIR$/src/test/java/edu/rice/starvote/ScanTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/DiverterPython.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
@@ -685,6 +708,10 @@
         <option value="$PROJECT_DIR$/src/test/java/edu/rice/starvote/DiverterTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/Monitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/pwm.py" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMPi4j.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMBlaster.java" />
+        <option value="$PROJECT_DIR$/src/main/java/edu/rice/starvote/Controller.java" />
       </list>
     </option>
   </component>
@@ -810,6 +837,10 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
               <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1682,7 +1713,7 @@
       <workItem from="1469125298825" duration="149000" />
       <workItem from="1469125485658" duration="26196000" />
       <workItem from="1470167704056" duration="1608000" />
-      <workItem from="1470170862896" duration="2095000" />
+      <workItem from="1470170862896" duration="4521000" />
     </task>
     <servers />
   </component>
@@ -1698,7 +1729,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40026000" />
+    <option name="totallyTimeSpent" value="42452000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="23" width="1359" height="877" extended-state="0" />
@@ -1756,14 +1787,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/Tester.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="55" selection-start-line="8" selection-start-column="55" selection-end-line="8" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/ExternalProcess.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -1911,14 +1934,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMBlaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="74" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/Edge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -2017,46 +2032,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/IMotor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PinMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/pwm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/Tester.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="34" column="19" selection-start-line="34" selection-start-column="19" selection-end-line="34" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2091,14 +2071,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PrinterMotor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/edu/rice/starvote/ScanTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -2113,14 +2085,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="28" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMPython.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="44" column="69" selection-start-line="44" selection-start-column="69" selection-end-line="44" selection-end-column="69" />
           <folding />
         </state>
       </provider>
@@ -2141,14 +2105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-125">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/Monitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
@@ -2159,8 +2115,87 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="97" column="12" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
+        <state relative-caret-position="105">
+          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="730">
+          <caret line="70" column="13" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/pwm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMPi4j.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PinMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="21" column="38" selection-start-line="21" selection-start-column="38" selection-end-line="21" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMPython.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="44" column="69" selection-start-line="44" selection-start-column="69" selection-end-line="44" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/IMotor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PrinterMotor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="43" column="20" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PWMBlaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+          <folding>
+            <element signature="e#1098#1099#0" expanded="true" />
+            <element signature="e#1153#1154#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
           <folding />
         </state>
       </provider>

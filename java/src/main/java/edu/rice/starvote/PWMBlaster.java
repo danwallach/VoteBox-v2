@@ -14,8 +14,6 @@ public class PWMBlaster implements IPWMDriver {
     private static Path pwmpath = Paths.get("/dev/pi-blaster");
 
     private int pin;
-    private double frequency;
-    private double dutyCycle;
 
     private static void writePWM(String data) {
         try {
@@ -29,19 +27,18 @@ public class PWMBlaster implements IPWMDriver {
         return new PWMBlaster(pin, frequency, dutyCycle);
     }
 
-    private PWMBlaster(int pin, double frequency, double dutyCycle) {
+    public PWMBlaster(int pin, double frequency, double dutyCycle) {
         this.pin = pin;
-        this.frequency = frequency;
-        this.dutyCycle = dutyCycle;
+        writePWM(pin + "=" + dutyCycle / 100.0);
     }
 
     @Override
     public void setFrequency(double frequency) {
-        this.frequency = frequency;
+        System.out.println("Note: changing PWM frequency is not supported by PiBlaster");
     }
 
     @Override
     public void setDutyCycle(double dutyCycle) {
-        this.dutyCycle = dutyCycle;
+        writePWM(pin + "=" + dutyCycle / 100.0);
     }
 }

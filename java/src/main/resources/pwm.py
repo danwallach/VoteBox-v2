@@ -7,8 +7,8 @@ def start(pin, freq, dc):
     GPIO.setup(pin, GPIO.OUT)
     servo = GPIO.PWM(pin, freq)
     servo.start(dc)
-    time.sleep(1)
-    servo.stop()
+    # time.sleep(1)
+    # servo.stop()
 
 
 def set_dc(pin, dc):

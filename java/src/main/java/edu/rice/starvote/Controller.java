@@ -18,7 +18,7 @@ public class Controller {
     public Controller() {
         listener = new PaperListener(24);
         halfwaySensor = new PaperListener(23);
-        motor = new PrinterMotor(22, 27, new PWMPython(17, 50, 0));
+        motor = new PrinterMotor(22, 27, new PWMBlaster(17, 50, 0));
         diverter = new DiverterPython();
         scanner = new Scan();
         validator = code -> true;
