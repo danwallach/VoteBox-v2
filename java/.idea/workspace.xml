@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91ee909f-5926-4df1-add8-b6373838366a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/rice/starvote/Monitor.java" afterPath="$PROJECT_DIR$/src/main/java/edu/rice/starvote/Monitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java" afterPath="$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/edu/rice/starvote/DiverterTest.java" afterPath="$PROJECT_DIR$/src/test/java/edu/rice/starvote/DiverterTest.java" />
     </list>
     <ignored path="ballotbox.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -111,8 +109,8 @@
           <file leaf-file-name="PaperSpooler.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="91" column="51" selection-start-line="91" selection-start-column="51" selection-end-line="91" selection-end-column="51" />
+                <state relative-caret-position="120">
+                  <caret line="97" column="12" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
                   <folding />
                 </state>
               </provider>
@@ -1684,7 +1682,7 @@
       <workItem from="1469125298825" duration="149000" />
       <workItem from="1469125485658" duration="26196000" />
       <workItem from="1470167704056" duration="1608000" />
-      <workItem from="1470170862896" duration="1759000" />
+      <workItem from="1470170862896" duration="2095000" />
     </task>
     <servers />
   </component>
@@ -1700,7 +1698,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39690000" />
+    <option name="totallyTimeSpent" value="40026000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="23" width="1359" height="877" extended-state="0" />
@@ -2161,8 +2159,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/rice/starvote/PaperSpooler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="91" column="51" selection-start-line="91" selection-start-column="51" selection-end-line="91" selection-end-column="51" />
+        <state relative-caret-position="120">
+          <caret line="97" column="12" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
           <folding />
         </state>
       </provider>

@@ -81,7 +81,7 @@ public class PaperSpooler implements ISpooler {
                 status = DeviceStatus.READY;
                 statusUpdater.pushStatus(BallotStatus.WAITING);
                 signalDone.countDown();
-            }, 1000)) {
+            }, 2000)) {
                 // Paper still in spooler
                 System.out.println("Spooler jammed");
                 motor.stop();
@@ -95,7 +95,7 @@ public class PaperSpooler implements ISpooler {
                 statusUpdater.pushStatus(BallotStatus.OFFLINE);
                 signalDone.countDown();
             }
-        }, 1000)) {
+        }, 2000)) {
             // Tray was empty
             System.out.println("Paper tray empty");
             motor.stop();
