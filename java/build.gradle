@@ -26,3 +26,5 @@ idea {
         downloadSources = true
     }
 }
+
+mainClassName = 'edu.rice.starvote.Controller'

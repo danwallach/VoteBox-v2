@@ -1,7 +1,5 @@
 package edu.rice.starvote;
 
-import com.sun.tools.doclets.internal.toolkit.util.Extern;
-
 import java.io.File;
 
 /**

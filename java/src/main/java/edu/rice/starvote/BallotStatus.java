@@ -5,11 +5,11 @@ package edu.rice.starvote;
  */
 public enum BallotStatus {
 
-    OFFLINE("Offline"),
-    WAITING("Waiting"),
-    SPOOLING("Pending"),
-    ACCEPT("Accepted"),
-    REJECT("Rejected");
+    OFFLINE("offline"),
+    WAITING("waiting"),
+    SPOOLING("pending"),
+    ACCEPT("accept"),
+    REJECT("reject");
 
     private String displayName;
 

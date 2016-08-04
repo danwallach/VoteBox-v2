@@ -16,11 +16,11 @@ public class PaperSpooler implements ISpooler {
     private final IStatusUpdate statusUpdater;
     private final IDiverter diverter;
     private final IMotor motor;
-    private final PaperListener halfwaySensor;
+    private final GPIOListener halfwaySensor;
     private final IScanner scanner;
     private final IValidator validator;
 
-    public PaperSpooler(IStatusUpdate statusUpdater, IDiverter diverter, IMotor motor, PaperListener halfwaySensor, IScanner scanner,
+    public PaperSpooler(IStatusUpdate statusUpdater, IDiverter diverter, IMotor motor, GPIOListener halfwaySensor, IScanner scanner,
                         IValidator validator) {
         this.statusUpdater = statusUpdater;
         this.diverter = diverter;
@@ -48,8 +48,14 @@ public class PaperSpooler implements ISpooler {
         // Register the event listener
         if (!halfwaySensor.waitForEvent(PinEdge.FALLING, () -> {
             System.out.println("Paper taken in, beginning scan");
+            try {
+                TimeUnit.MILLISECONDS.sleep(100);
+            } catch (InterruptedException e) {
+                System.err.println(e.toString());
+            }
             motor.reverseSlow();
             String code = scanner.scan(SCANTIME);
+            motor.stop();
             // TODO: add delays for accept/reject messages
             if (code.isEmpty()) {
                 System.out.println("Ballot not scanned");
@@ -66,25 +72,36 @@ public class PaperSpooler implements ISpooler {
                     diverter.up();
                 }
             }
+            try {
+                TimeUnit.MILLISECONDS.sleep(1000);
+            } catch (InterruptedException e) {
+                System.err.println(e.toString());
+            }
             motor.reverse();
             if (!halfwaySensor.waitForEvent(PinEdge.RISING, () -> {
                 System.out.println("Spooler cleared");
                 try {
-                    TimeUnit.MILLISECONDS.sleep(100);
+                    TimeUnit.MILLISECONDS.sleep(500);
                 } catch (InterruptedException ignored) {}
                 motor.stop();
                 status = DeviceStatus.READY;
                 statusUpdater.pushStatus(BallotStatus.WAITING);
                 signalDone.countDown();
-            }, 1000)) {
+            }, 2000)) {
                 // Paper still in spooler
                 System.out.println("Spooler jammed");
+                motor.reverse();
+                try {
+                    TimeUnit.SECONDS.sleep(2);
+                } catch (InterruptedException e) {
+                    System.err.println(e.toString());
+                }
                 motor.stop();
                 status = DeviceStatus.ERROR;
                 statusUpdater.pushStatus(BallotStatus.OFFLINE);
                 signalDone.countDown();
             }
-        }, 1000)) {
+        }, 2000)) {
             // Tray was empty
             System.out.println("Paper tray empty");
             motor.stop();

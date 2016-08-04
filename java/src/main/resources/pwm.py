@@ -1,8 +1,14 @@
+import RPi.GPIO as GPIO
 import time
 
+
 def start(pin, freq, dc):
-    # print str(pin) + " " + str(freq) + " " + str(dc)
-    print_args([pin, freq, dc])
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(pin, GPIO.OUT)
+    servo = GPIO.PWM(pin, freq)
+    servo.start(dc)
+    # time.sleep(1)
+    # servo.stop()
 
 
 def set_dc(pin, dc):
