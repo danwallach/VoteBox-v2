@@ -33,7 +33,7 @@ public class StatusServer {
 
     private void setWebSocket() {
         webSocket("/pushstatus", StatusWebSocket.class);
-        statusProvider.addListener((status) -> sessions.forEach((session) -> {
+        statusProvider.addListener((status) -> sessions.parallelStream().forEach((session) -> {
             System.out.println("Send status update: " + status.toString() + " to " + session.getRemoteAddress().getHostString());
             try {
                 session.getRemote().sendString(status.toString());

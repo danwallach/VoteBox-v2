@@ -37,6 +37,7 @@ public class Controller {
     public void run() {
         final Thread serverThread = new Thread(statusServer::start);
         serverThread.run();
+        updater.pushStatus(BallotStatus.WAITING);
         monitor.run();
     }
 
