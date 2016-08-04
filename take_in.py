@@ -110,6 +110,7 @@ def slow_motor(pwm):
 
         logging.info("Brocasting status - 'Accept.'")
         config.status = "accept"
+        time.sleep(3) # allow time for accept message to play
     else:
         logging.info("Broacasting status - 'Reject.'")
         diverter.up()
