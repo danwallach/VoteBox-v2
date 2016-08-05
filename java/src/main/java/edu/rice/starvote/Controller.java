@@ -31,7 +31,7 @@ public class Controller {
         };
         spooler = new PaperSpooler(updater, diverter, motor, halfwaySensor, scanner, validator);
         monitor = new Monitor(listener, spooler);
-        statusServer = new StatusServer(80, statusProvider);
+        statusServer = new StatusServer(7654, statusProvider);
     }
 
     public void run() {
