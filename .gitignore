@@ -66,3 +66,9 @@ Thumbs.db
 
 # Mac indexing files
 .DS_Store
+
+# IntelliJ files
+java/.idea/workspace.xml
+
+# Gradle cache
+java/.gradle/

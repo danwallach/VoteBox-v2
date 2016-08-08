@@ -8,10 +8,25 @@ package edu.rice.starvote;
  */
 public enum BallotStatus {
 
+    /**
+     * Box in error state and cannot be used.
+     */
     OFFLINE("offline"),
+    /**
+     * Box is active and waiting for paper to be placed in tray.
+     */
     WAITING("waiting"),
+    /**
+     * Box is busy processing a ballot.
+     */
     SPOOLING("pending"),
+    /**
+     * The ballot was accepted.
+     */
     ACCEPT("accept"),
+    /**
+     * The ballot was rejected.
+     */
     REJECT("reject");
 
     private String displayName;

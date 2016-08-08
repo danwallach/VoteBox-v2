@@ -1,8 +1,8 @@
 # Ballot box driver, Java edition 1.0
 
-Implementation of the ballot box driver software in Java. The web client for
-the screen display and sound is not included; it is available at
-[VoteBox-Display](https://github.com/luejerry/VoteBox-Display).
+Fully event-driven implementation of the ballot box driver software in Java.
+The web client for the screen display and sound is not included; it is
+available at [VoteBox-Display](https://github.com/luejerry/VoteBox-Display).
 
 ## Requirements
 - Raspberry Pi 3
@@ -49,5 +49,5 @@ in Gradle. To run it through IntelliJ or manually, the main entry point is via
 - Replace Python-based servomotor control with something more palatable
 - Organize stuff into actual subpackages
 
-## Author
+## Authors
 - luejerry
