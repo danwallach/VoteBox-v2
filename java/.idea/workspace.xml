@@ -6,7 +6,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.13/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../README.md" afterPath="$PROJECT_DIR$/../README.md" />
     </list>
     <ignored path="ballotbox.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1663,7 +1663,7 @@
       <workItem from="1470170862896" duration="18205000" />
       <workItem from="1470614012935" duration="598000" />
       <workItem from="1470614626155" duration="15971000" />
-      <workItem from="1470633856567" duration="989000" />
+      <workItem from="1470633856567" duration="1071000" />
     </task>
     <servers />
   </component>
@@ -1682,7 +1682,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73694000" />
+    <option name="totallyTimeSpent" value="73776000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
