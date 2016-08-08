@@ -1,4 +1,4 @@
-# Ballot box driver, Java edition
+# Ballot box driver, Java edition 1.0
 
 Implementation of the ballot box driver software in Java. The web client for
 the screen display and sound is not included; it is available at
@@ -22,3 +22,22 @@ the application in a self-contained archive package:
 
 The resulting tar package is placed in `build/distributions`. Unpack it to the
 desired directory and run the included startup script to start the program.
+Note that this program must be run as root because of direct hardware access.
+
+## Source
+This software was developed in IntelliJ IDEA and built with Gradle. Opening
+this directory (`/java`) as project root in IntelliJ should import everything
+in a working state. You may need to manually refresh Gradle for it to download
+the necessary dependencies.
+
+The Gradle task `application/run` can be used to run the program as configured
+in Gradle. To run it through IntelliJ or manually, the main entry point is via
+`Controller.main()`.
+
+## Todo
+- Debugging
+- Replace Python-based servomotor control with something more palatable
+- Organize stuff into actual subpackages
+
+## Author
+- luejerry
