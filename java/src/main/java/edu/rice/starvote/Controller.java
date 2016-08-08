@@ -1,7 +1,9 @@
 package edu.rice.starvote;
 
 /**
- * Created by luej on 7/27/16.
+ * Main entry point of program. Instantiates all components of the ballot box software and links them together.
+ *
+ * @author luejerry
  */
 public class Controller {
 
@@ -17,6 +19,9 @@ public class Controller {
     private final StatusContainer statusProvider;
     private final StatusServer statusServer;
 
+    /**
+     * Instantiates all modules, performing the necessary linking. Does not start the paper listener or status server.
+     */
     public Controller() {
         listener = new GPIOListener(24);
         halfwaySensor = new GPIOListener(23);
@@ -34,6 +39,9 @@ public class Controller {
         statusServer = new StatusServer(7654, statusProvider);
     }
 
+    /**
+     * Start the status server and paper listener. **This method does not return.**
+     */
     public void run() {
         final Thread serverThread = new Thread(statusServer::start);
         serverThread.run();
@@ -41,6 +49,10 @@ public class Controller {
         monitor.run();
     }
 
+    /**
+     * Program main entry point. Starts up the ballot box.
+     * @param args Ignored.
+     */
     public static void main (String[] args) {
         final Controller controller = new Controller();
         controller.run();

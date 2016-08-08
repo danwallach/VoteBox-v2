@@ -1,7 +1,10 @@
 package edu.rice.starvote;
 
 /**
- * Created by luej on 7/20/16.
+ * Describes the state of the ballot box. Each message displayed on the ballot box screen correlates with one status.
+ * The `name` of each status is the string pushed to the status display server.
+ *
+ * @author luejerry
  */
 public enum BallotStatus {
 

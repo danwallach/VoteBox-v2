@@ -10,7 +10,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import static edu.rice.starvote.StatusServer.sessions;
 
 /**
- * Created by luej on 8/3/16.
+ * WebSocket handler class for status server. Manages the global WebSocket sessions list.
+ *
+ * @author luejerry
  */
 @WebSocket
 public class StatusWebSocket {

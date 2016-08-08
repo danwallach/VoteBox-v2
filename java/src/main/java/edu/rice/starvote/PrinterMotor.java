@@ -5,7 +5,9 @@ import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinState;
 
 /**
- * Created by luej on 7/26/16.
+ * Reference implementation of the feed motor controller, driving the main motor in an HP 1010 printer.
+ *
+ * @author luejerry
  */
 public class PrinterMotor implements IMotor {
 
@@ -13,12 +15,24 @@ public class PrinterMotor implements IMotor {
     private final GpioPinDigitalOutput reversePin; // motor reverse (pin 27)
     private final IPWMDriver driver; // motor enable (pin 17)
 
+    /**
+     * Constructor.
+     * @param forwardPin Pin that moves motor forward when HIGH (BCM numbering).
+     * @param reversePin Pin that moves motor reverse when HIGH (BCM numbering).
+     * @param driver PWM driver module.
+     */
     public PrinterMotor(int forwardPin, int reversePin, IPWMDriver driver) {
         this.forwardPin = GPIOManager.controller().provisionDigitalOutputPin(PinMap.mapPin(forwardPin).get(), PinState.LOW);
         this.reversePin = GPIOManager.controller().provisionDigitalOutputPin(PinMap.mapPin(reversePin).get(), PinState.LOW);
         this.driver = driver;
     }
 
+    /**
+     * Constructor.
+     * @param forwardPin Pin that moves motor forward when HIGH (Pi4J pin).
+     * @param reversePin Pin that moves motor reverse when HIGH (Pi4J pin).
+     * @param driver PWM driver module.
+     */
     public PrinterMotor(Pin forwardPin, Pin reversePin, IPWMDriver driver) {
         this.forwardPin = GPIOManager.controller().provisionDigitalOutputPin(forwardPin, PinState.LOW);
         this.reversePin = GPIOManager.controller().provisionDigitalOutputPin(reversePin, PinState.LOW);

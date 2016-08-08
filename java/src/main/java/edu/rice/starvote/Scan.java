@@ -3,7 +3,9 @@ package edu.rice.starvote;
 import java.io.File;
 
 /**
- * Created by luej on 7/26/16.
+ * Implementation of scanner controller that invokes an external C scan program.
+ *
+ * @author luejerry
  */
 public class Scan implements IScanner {
 
