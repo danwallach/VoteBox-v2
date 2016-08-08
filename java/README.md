@@ -42,7 +42,7 @@ the necessary dependencies.
 
 The Gradle task `application/run` can be used to run the program as configured
 in Gradle. To run it through IntelliJ or manually, the main entry point is via
-`Controller.main()`.
+`edu.rice.starvote.Controller.main()`.
 
 ## Todo
 - Debugging
