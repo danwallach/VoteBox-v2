@@ -7,20 +7,45 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static spark.Spark.*;
+
 /**
- * Created by luej on 8/2/16.
+ * Web server that supplies the current status of the ballot box. There are two available routes, supporting HTTP and
+ * WebSocket methods of communication:
+ *
+ *  - `/status`: returns the status of the box in plaintext.
+ *  - `/pushstatus`: WebSocket that sends the status of the box in plaintext whenever it is updated. Messages from the
+ *  client are ignored.
+ *
+ *  Clients are recommended to use WebSockets, as it allows updates to be pushed directly by the server as they occur
+ *  and minimizes unnecessary network usage. However, HTTP polling is also fully supported.
+ *
+ *  The server is not started on instantiation. To begin listening, call `start()`.
+ *
+ *  @author luejerry
  */
 public class StatusServer {
 
     private int port;
     private StatusContainer statusProvider;
+
+    /**
+     * All connected WebSocket sessions. Unfortunately must be static due to limitation of the Spark/Jetty server.
+     */
     static Queue<Session> sessions = new ConcurrentLinkedQueue<>();
 
+    /**
+     * Constructor. Does not start the server.
+     * @param port Listening port.
+     * @param statusProvider Ballot status container to read status from.
+     */
     public StatusServer(int port, StatusContainer statusProvider) {
         this.port = port;
         this.statusProvider = statusProvider;
     }
 
+    /**
+     * Set HTTP routes (`/status`).
+     */
     private void setRoutes() {
         get("/status", (request, response) -> {
             final BallotStatus status = this.statusProvider.getStatus();
@@ -31,6 +56,9 @@ public class StatusServer {
         });
     }
 
+    /**
+     * Set WebSocket route (`/pushstatus`).
+     */
     private void setWebSocket() {
         webSocket("/pushstatus", StatusWebSocket.class);
         statusProvider.addListener((status) -> sessions.parallelStream().forEach((session) -> {
@@ -43,6 +71,9 @@ public class StatusServer {
         }));
     }
 
+    /**
+     * Start the server.
+     */
     public void start() {
         port(port);
         setWebSocket();

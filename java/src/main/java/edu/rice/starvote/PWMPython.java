@@ -3,7 +3,11 @@ package edu.rice.starvote;
 import java.io.File;
 
 /**
- * Created by luej on 7/20/16.
+ * Implementation of PWM controller via external Python scripts, which use the RPi.GPIO library. This solution is
+ * not ideal and pi-blaster should be used instead if possible.
+ *
+ * @see PWMBlaster
+ * @author luejerry
  */
 public class PWMPython implements IPWMDriver {
 
@@ -11,10 +15,6 @@ public class PWMPython implements IPWMDriver {
     private double frequency;
     private double dutyCycle;
     private static String pyPath = PWMPython.class.getClassLoader().getResource("pwm.py").getPath();
-
-    public static IPWMDriver init(int pin, double frequency, double dutyCycle) {
-        return new PWMPython(pin, frequency, dutyCycle);
-    }
 
     public PWMPython(int pin, double frequency, double dutyCycle) {
         this.pin = pin;

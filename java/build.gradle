@@ -27,4 +27,15 @@ idea {
     }
 }
 
+buildscript {
+    repositories {
+        mavenCentral() // or jcenter()
+    }
+    dependencies {
+        classpath 'ch.raffael.pegdown-doclet:pegdown-doclet:1.2'
+    }
+}
+
+apply plugin: 'ch.raffael.pegdown-doclet'
+
 mainClassName = 'edu.rice.starvote.Controller'
