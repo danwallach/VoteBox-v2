@@ -24,6 +24,16 @@ The resulting tar package is placed in `build/distributions`. Unpack it to the
 desired directory and run the included startup script to start the program.
 Note that this program must be run as root because of direct hardware access.
 
+## Documentation
+Generate documentation by running
+
+`./gradlew javadoc`
+
+The resulting JavaDoc is placed under `build/docs`. Source code for this
+project is formatted with Markdown and converted to JavaDoc HTML with the
+[pegdown-doclet](https://github.com/Abnaxos/pegdown-doclet) plugin, which is
+included in the provided Gradle configuration.
+
 ## Source
 This software was developed in IntelliJ IDEA and built with Gradle. Opening
 this directory (`/java`) as project root in IntelliJ should import everything
