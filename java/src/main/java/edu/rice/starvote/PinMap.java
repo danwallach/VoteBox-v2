@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * The Pi4J library uses its own GPIO pin numbering scheme. This class provides a convenience method to map BCM pin
- * numbers to Pi4J pins.
+ * This class provides a convenience method to map BCM pin numbers to Pi4J pins. All invocations of Pi4J GPIO functions
+ * **must** use the Pi4J pin mapping.
  *
  * @author luejerry
  */

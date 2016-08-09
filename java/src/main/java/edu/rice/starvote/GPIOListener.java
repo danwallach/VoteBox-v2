@@ -36,7 +36,7 @@ public class GPIOListener {
      * concurrently with the parent thread. Be careful to implement additional synchronization if concurrency is not
      * desired.
      *
-     * @param edge Direction of state change to listen for. RISING, FALLING, or BOTH.
+     * @param edge Direction of state change to listen for: `RISING`, `FALLING`, or `BOTH`.
      * @param task Task to execute when event is detected.
      * @return True if event occured, false if interrupted while waiting.
      */
@@ -67,7 +67,7 @@ public class GPIOListener {
      * concurrently with the parent thread. Be careful to implement additional synchronization if concurrency is not
      * desired.
      *
-     * @param edge Direction of state change to listen for. RISING, FALLING, or BOTH.
+     * @param edge Direction of state change to listen for: `RISING`, `FALLING`, or `BOTH`.
      * @param task Task to execute when event is detected.
      * @param timeout Time to wait in milliseconds.
      * @return True if event occured, false if timeout expired or interrupted.
@@ -91,7 +91,7 @@ public class GPIOListener {
 
     /**
      * Get current state of pin.
-     * @return Pin state.
+     * @return Pin state. `LOW` or `HIGH`.
      */
     public PinState getState() {
         return sensor.getState();
