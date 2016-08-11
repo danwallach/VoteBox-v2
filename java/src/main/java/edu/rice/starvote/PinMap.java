@@ -8,7 +8,10 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Created by luej on 7/21/16.
+ * This class provides a convenience method to map BCM pin numbers to Pi4J pins. All invocations of Pi4J GPIO functions
+ * **must** use the Pi4J pin mapping.
+ *
+ * @author luejerry
  */
 public class PinMap {
 
@@ -24,6 +27,11 @@ public class PinMap {
         map.put(27, RaspiPin.GPIO_02);
     }
 
+    /**
+     * Get the Pi4J pin corresponding to a given BCM pin.
+     * @param bcm BCM pin number.
+     * @return Pi4J pin in an Optional. Optional is empty if pin mapping does not exist.
+     */
     public static Optional<Pin> mapPin(Integer bcm) {
         return Optional.ofNullable(map.get(bcm));
     }

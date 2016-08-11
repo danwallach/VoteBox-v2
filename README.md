@@ -5,6 +5,7 @@ An improved version of the original [Vote Box](https://github.com/danwallach/Vot
 ## Directories
 *   `box-schematics` CAD schematics of mechanical components
 *   `circuitdiagram` Electronic circuit diagrams
+*	`java` Java ballotbox software implementation
 *   `scan-src` Source files for barcode scanner module
 *   `servo-src` Source files for hardware PWM servo module (experimental)
 

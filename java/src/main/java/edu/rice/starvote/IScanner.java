@@ -1,9 +1,17 @@
 package edu.rice.starvote;
 
 /**
- * Created by luej on 7/26/16.
+ * Interface for a code scanner controller.
+ *
+ * @author luejerry
  */
 public interface IScanner {
 
+    /**
+     * Attempt to scan a code.
+     *
+     * @param timeout Timeout in seconds.
+     * @return Scanned code, or empty string if timeout elapsed.
+     */
     String scan(int timeout);
 }
