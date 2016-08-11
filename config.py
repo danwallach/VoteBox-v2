@@ -25,4 +25,4 @@ class TCPServer_nowait(SocketServer.TCPServer):
         self.socket.bind(self.server_address)
 
 #httpd = SocketServer.TCPServer(('', 80), StatusRequestHandler)
-httpd = TCPServer_nowait(('', 80), StatusRequestHandler)
+httpd = TCPServer_nowait(('', 81), StatusRequestHandler)
