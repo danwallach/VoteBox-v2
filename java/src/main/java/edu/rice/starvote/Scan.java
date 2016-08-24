@@ -1,6 +1,7 @@
 package edu.rice.starvote;
 
 import java.io.File;
+import java.nio.file.Path;
 
 /**
  * Implementation of scanner controller that invokes an external C scan program.
@@ -9,9 +10,9 @@ import java.io.File;
  */
 public class Scan implements IScanner {
 
-    final static File wd = new File(Scan.class.getClassLoader().getResource("scan").getPath()).getParentFile();
+    private final static Path scanPath = JarResource.getResource("scan");
 
     public String scan(int timeout) {
-        return ExternalProcess.runInDirAndCapture(wd, "./scan", String.valueOf(timeout));
+        return ExternalProcess.runInDirAndCapture(scanPath.getParent().toFile(), "./scan", String.valueOf(timeout));
     }
 }
