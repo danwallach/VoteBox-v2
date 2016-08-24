@@ -1,6 +1,7 @@
 package edu.rice.starvote;
 
 import java.io.File;
+import java.nio.file.Path;
 
 /**
  * Diverter servo control using an external Python script using the RPi.GPIO library. This is not an ideal solution
@@ -11,23 +12,20 @@ import java.io.File;
  */
 public class DiverterPython implements IDiverter {
 
-    /**
-     * Path of the Python diverter script.
-     */
-    private static String pyPath = DiverterPython.class.getClassLoader().getResource("pwm.py").getPath();
+    private static Path diverterPath = JarResource.getResource("diverter.py");
 
-    /**
-     * Working directory containing the script.
-     */
-    private static File wd = new File(pyPath).getParentFile();
+    static {
+        JarResource.getResource("diverter_config.py");
+        JarResource.getResource("rpi_servodriver.py");
+    }
 
     @Override
     public void up() {
-        ExternalProcess.runInDir(wd, "python", "-c", "import diverter; diverter.up()");
+        ExternalProcess.runInDir(diverterPath.getParent().toFile(), "python", "-c", "import diverter; diverter.up()");
     }
 
     @Override
     public void down() {
-        ExternalProcess.runInDir(wd, "python", "-c", "import diverter; diverter.down()");
+        ExternalProcess.runInDir(diverterPath.getParent().toFile(), "python", "-c", "import diverter; diverter.down()");
     }
 }

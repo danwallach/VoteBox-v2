@@ -42,6 +42,15 @@ public class PWMBlaster implements IPWMDriver {
     }
 
     /**
+     * Constructor. Does not start PWM (use `setDutyCycle()` to start).
+     * @param pin PWM output pin (BCM numbering).
+     * @param frequency Ignored.
+     */
+    public PWMBlaster(int pin, double frequency) {
+        this.pin = pin;
+    }
+
+    /**
      * pi-blaster does not support changing the frequency. Invoking this method only prints a warning message.
      * @param frequency Ignored.
      */

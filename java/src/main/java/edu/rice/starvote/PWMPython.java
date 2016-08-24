@@ -1,6 +1,9 @@
 package edu.rice.starvote;
 
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 /**
  * Implementation of PWM controller via external Python scripts, which use the RPi.GPIO library. This solution is
@@ -14,7 +17,7 @@ public class PWMPython implements IPWMDriver {
     private int pin;
     private double frequency;
     private double dutyCycle;
-    private static String pyPath = PWMPython.class.getClassLoader().getResource("pwm.py").getPath();
+    private static Path pyFile = JarResource.getResource("pwm.py");
 
     public PWMPython(int pin, double frequency, double dutyCycle) {
         this.pin = pin;
@@ -30,7 +33,7 @@ public class PWMPython implements IPWMDriver {
 
     public void setFrequency(double frequency) {
         this.frequency = frequency;
-        ExternalProcess.runInDir(new File(pyPath).getParentFile(),
+        ExternalProcess.runInDir(pyFile.getParent().toFile(),
                 "python", "-c", "import pwm; " +
                         "pwm.start(" + pin + ", " + frequency + "," + dutyCycle + ")");
 //        System.out.println(ExternalProcess.runInDirAndCapture(new File(pyPath).getParentFile(),
@@ -40,7 +43,7 @@ public class PWMPython implements IPWMDriver {
 
     public void setDutyCycle(double dutyCycle) {
         this.dutyCycle = dutyCycle;
-        ExternalProcess.runInDir(new File(pyPath).getParentFile(),
+        ExternalProcess.runInDir(pyFile.getParent().toFile(),
                 "python", "-c", "import pwm; " +
                         "pwm.start(" + pin + ", " + frequency + ", " + dutyCycle + ")");
 //        System.out.println(ExternalProcess.runInDirAndCapture(new File(pyPath).getParentFile(),
