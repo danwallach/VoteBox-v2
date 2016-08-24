@@ -7,7 +7,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.FileAttribute;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -37,7 +41,9 @@ public class JarResource {
                 throw new RuntimeException("Resource failed to load");
             }
             try {
-                final Path filePath = Files.createFile(tempDir.resolve(path));
+                final FileAttribute<Set<PosixFilePermission>> permissions = PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rwxr-----"));
+
+                final Path filePath = Files.createFile(tempDir.resolve(path), permissions);
                 filePath.toFile().deleteOnExit();
                 final BufferedInputStream reader = new BufferedInputStream(resourceStream);
                 Files.copy(reader, filePath, StandardCopyOption.REPLACE_EXISTING);
