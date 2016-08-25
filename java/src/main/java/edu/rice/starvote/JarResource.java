@@ -42,14 +42,15 @@ public class JarResource {
             }
             try {
                 final Set<PosixFilePermission> perms = PosixFilePermissions.fromString("rwxr-----");
+
                 final FileAttribute<Set<PosixFilePermission>> permissions = PosixFilePermissions.asFileAttribute(perms);
 
                 final Path filePath = Files.createFile(tempDir.resolve(path), permissions);
-                Files.setPosixFilePermissions(filePath, perms);
                 filePath.toFile().deleteOnExit();
                 final BufferedInputStream reader = new BufferedInputStream(resourceStream);
                 Files.copy(reader, filePath, StandardCopyOption.REPLACE_EXISTING);
                 reader.close();
+                Files.setPosixFilePermissions(filePath, perms);
                 resources.put(path, filePath);
                 System.out.println("Extracted temporary resource to " + filePath.toAbsolutePath().toString());
                 return filePath;
