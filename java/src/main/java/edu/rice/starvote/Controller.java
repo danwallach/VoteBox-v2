@@ -25,8 +25,8 @@ public class Controller {
     public Controller() {
         listener = new GPIOListener(24);
         halfwaySensor = new GPIOListener(23);
-        motor = new PrinterMotor(22, 27, new PWMBlaster(17, 50, 0));
-        diverter = new DiverterBlaster(new PWMBlaster(18, 50));
+        motor = new PrinterMotor(22, 27, new PWMBlaster(17, 50));
+        diverter = new DiverterPWM(new PWMBlaster(18, 50));
         scanner = new Scan();
         validator = code -> true;
         statusProvider = new StatusContainer();

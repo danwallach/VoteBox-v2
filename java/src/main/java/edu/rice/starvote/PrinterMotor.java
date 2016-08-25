@@ -4,6 +4,8 @@ import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinState;
 
+import java.io.IOException;
+
 /**
  * Reference implementation of the feed motor controller, driving the main motor in an HP 1010 printer.
  *
@@ -40,47 +42,47 @@ public class PrinterMotor implements IMotor {
     }
 
     @Override
-    public void stop() {
+    public void stop() throws IOException {
         driver.setDutyCycle(0);
     }
 
     @Override
-    public void forward() {
+    public void forward() throws IOException {
         forwardPin.high();
         reversePin.low();
         driver.setDutyCycle(100);
     }
 
     @Override
-    public void forwardSlow() {
+    public void forwardSlow() throws IOException {
         forwardPin.high();
         reversePin.low();
         driver.setDutyCycle(25);
     }
 
     @Override
-    public void forward(double speed) {
+    public void forward(double speed) throws IOException {
         forwardPin.high();
         reversePin.low();
         driver.setDutyCycle(speed);
     }
 
     @Override
-    public void reverse() {
+    public void reverse() throws IOException {
         reversePin.high();
         forwardPin.low();
         driver.setDutyCycle(100);
     }
 
     @Override
-    public void reverseSlow() {
+    public void reverseSlow() throws IOException {
         reversePin.high();
         forwardPin.low();
         driver.setDutyCycle(25);
     }
 
     @Override
-    public void reverse(double speed) {
+    public void reverse(double speed) throws IOException {
         reversePin.high();
         forwardPin.low();
         driver.setDutyCycle(speed);

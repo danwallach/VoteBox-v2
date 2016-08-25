@@ -1,15 +1,17 @@
 package edu.rice.starvote;
 
-import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 
 /**
- * Diverter servo control using an external Python script using the RPi.GPIO library. This is not an ideal solution
- * but works for our purposes. The native Pi4J library supports only pure software PWM and is unsuitable for driving
- * servos.
+ * Diverter servo control using an external Python script using the RPi.GPIO library. *This solution is not ideal and
+ * has been included for compatibility reasons. pi-blaster should be used instead if possible.*
  *
+ * @see DiverterPWM
+ * @see PWMBlaster
  * @author luejerry
  */
+@Deprecated
 public class DiverterPython implements IDiverter {
 
     private static Path diverterPath = JarResource.getResource("diverter.py");
@@ -20,12 +22,12 @@ public class DiverterPython implements IDiverter {
     }
 
     @Override
-    public void up() {
+    public void up() throws IOException {
         ExternalProcess.runInDir(diverterPath.getParent().toFile(), "python", "-c", "import diverter; diverter.up()");
     }
 
     @Override
-    public void down() {
+    public void down() throws IOException {
         ExternalProcess.runInDir(diverterPath.getParent().toFile(), "python", "-c", "import diverter; diverter.down()");
     }
 }

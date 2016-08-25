@@ -1,17 +1,16 @@
 package edu.rice.starvote;
 
-import java.io.*;
-import java.nio.file.Files;
+import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 
 /**
- * Implementation of PWM controller via external Python scripts, which use the RPi.GPIO library. This solution is
- * not ideal and pi-blaster should be used instead if possible.
+ * Implementation of PWM controller via external Python scripts, which use the RPi.GPIO library. *This solution is
+ * not ideal and has been included for compatibility reasons. pi-blaster should be used instead if possible.*
  *
  * @see PWMBlaster
  * @author luejerry
  */
+@Deprecated
 public class PWMPython implements IPWMDriver {
 
     private int pin;
@@ -23,31 +22,19 @@ public class PWMPython implements IPWMDriver {
         this.pin = pin;
         this.frequency = frequency;
         this.dutyCycle = dutyCycle;
-//        ExternalProcess.runInDir(new File(pyPath).getParentFile(),
-//                "python", "-c", "import pwm; " +
-//                        "pwm.start(" + pin + ", " + frequency + ", " + dutyCycle + ")");
-//        System.out.println(ExternalProcess.runInDirAndCapture(new File(pyPath).getParentFile(),
-//                "python", "-c", "import pwm; " +
-//                        "pwm.start(" + pin + ", " + frequency + ", " + dutyCycle + ")"));
     }
 
-    public void setFrequency(double frequency) {
+    public void setFrequency(double frequency) throws IOException {
         this.frequency = frequency;
         ExternalProcess.runInDir(pyFile.getParent().toFile(),
                 "python", "-c", "import pwm; " +
                         "pwm.start(" + pin + ", " + frequency + "," + dutyCycle + ")");
-//        System.out.println(ExternalProcess.runInDirAndCapture(new File(pyPath).getParentFile(),
-//                "python", "-c", "import pwm; " +
-//                        "pwm.set_freq(" + pin + ", " + frequency + ")"));
     }
 
-    public void setDutyCycle(double dutyCycle) {
+    public void setDutyCycle(double dutyCycle) throws IOException {
         this.dutyCycle = dutyCycle;
         ExternalProcess.runInDir(pyFile.getParent().toFile(),
                 "python", "-c", "import pwm; " +
                         "pwm.start(" + pin + ", " + frequency + ", " + dutyCycle + ")");
-//        System.out.println(ExternalProcess.runInDirAndCapture(new File(pyPath).getParentFile(),
-//                "python", "-c", "import pwm; " +
-//                        "pwm.set_dc(" + pin + ", " + dutyCycle + ")"));
     }
 }

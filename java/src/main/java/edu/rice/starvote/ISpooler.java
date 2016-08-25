@@ -18,20 +18,20 @@ public interface ISpooler {
     /**
      * Take in, scan, and process a single page from the paper feed tray.
      *
-     * ##### Preconditions
+     * ##### Preconditions #####
      *  - All necessary hardware and GPIO pins are initialized and ready to take commands
      *  - A validator object has been initialized
      *  - A ballot status receiver has been initialized
      *  - The device status is READY
      *
-     * ##### Effects
+     * ##### Effects #####
      *  - If no page is in tray, returns immediately without attempting to scan a code
      *  - One page is accepted or ejected from the machine, if one was present
      *  - The ballot status is updated and sent to the status updater as appropriate
      *  - The scanned code is sent to the validator
      *  - The device status is set to BUSY during operation
      *
-     * ##### Postconditions
+     * ##### Postconditions #####
      *  - Device status is READY, or ERROR if error occurred
      *  - The last ballot status sent is WAITING, or OFFLINE if error occurred
      */
