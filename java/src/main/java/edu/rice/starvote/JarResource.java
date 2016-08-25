@@ -41,9 +41,11 @@ public class JarResource {
                 throw new RuntimeException("Resource failed to load");
             }
             try {
-                final FileAttribute<Set<PosixFilePermission>> permissions = PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString("rwxr-----"));
+                final Set<PosixFilePermission> perms = PosixFilePermissions.fromString("rwxr-----");
+                final FileAttribute<Set<PosixFilePermission>> permissions = PosixFilePermissions.asFileAttribute(perms);
 
                 final Path filePath = Files.createFile(tempDir.resolve(path), permissions);
+                Files.setPosixFilePermissions(filePath, perms);
                 filePath.toFile().deleteOnExit();
                 final BufferedInputStream reader = new BufferedInputStream(resourceStream);
                 Files.copy(reader, filePath, StandardCopyOption.REPLACE_EXISTING);
