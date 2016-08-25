@@ -15,9 +15,20 @@ available at [VoteBox-Display](https://github.com/luejerry/VoteBox-Display).
 ## Run
 Run `./gradlew run` as root.
 
+## Install
+Running through Gradle is impractical for production. To build the application
+locally:
+
+`./gradlew installApp`
+
+This will package the application and all dependencies into JARs and place
+them in the directory `build/install/ballotbox`. To run the installed
+application, run as root:
+
+`build/install/ballotbox/bin/ballotbox`
+
 ## Deploy
-Running directly through Gradle is impractical in a deployment setting. To
-package the application in a self-contained archive package:
+To package the application in a self-contained archive package:
 
 `./gradlew distTar`
 
