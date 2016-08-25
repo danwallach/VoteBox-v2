@@ -100,6 +100,7 @@ public class PaperSpooler implements ISpooler {
             }
             motor.reverseSlow();
             String code = scanner.scan(SCANTIME);
+            System.out.println("Code scanned: " + code);
             motor.stop();
             // TODO: add delays for accept/reject messages
             if (code.isEmpty()) {
