@@ -7,24 +7,34 @@ available at [VoteBox-Display](https://github.com/luejerry/VoteBox-Display).
 ## Requirements
 - Raspberry Pi 3
 - Java 1.8
-- Python
-- Gradle
 - [WiringPi](http://wiringpi.com/)
 - [Pi-blaster](https://github.com/sarfata/pi-blaster)
 
+Pi-blaster **must** be daemonized and configured with a pulse frequency of 50 Hz before
+running this application (refer to its documentation to see how to do this).
+
 ## Run
-Run `./gradlew run` as root.
+Run `./gradlew run` as root. This should only be used for development testing. Root
+privileges are required for GPIO hardware access.
+
+## Install
+To build the application locally:
+
+`./gradlew installApp`
+
+This will package the application and all dependencies into JARs and place
+them in the directory `build/install/ballotbox`. To run the installed
+application, run as root:
+
+`build/install/ballotbox/bin/ballotbox`
 
 ## Deploy
-Running directly through Gradle is impractical in a deployment setting. To
-package the application in a self-contained archive package:
+To package the application in a self-contained archive package:
 
 `./gradlew distTar`
 
-The resulting tar package is placed in `build/distributions`. Unpack it to the
-desired directory and run the included startup script to start the program.
-Note that this program must be run as root because of the need for GPIO
-hardware access.
+The resulting tar package is placed in `build/distributions`. This is the equivalent of
+packaging the output of _Install_ in a tar archive.
 
 ## Documentation
 Generate documentation by running
@@ -51,7 +61,6 @@ in Gradle. To run it through IntelliJ or manually, the main entry point is via
 
 ## Todo
 - Debugging
-- Replace Python-based servomotor control with something more palatable
 - Organize stuff into actual subpackages
 
 ## Authors

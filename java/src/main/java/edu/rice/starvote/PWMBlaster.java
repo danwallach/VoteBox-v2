@@ -7,8 +7,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Implementation of PWM controller using [pi-blaster](https://github.com/sarfata/pi-blaster). Note that PWM frequency
- * cannot be changed in this implementation due to a limitation with pi-blaster.
+ * Implementation of PWM controller using [pi-blaster](https://github.com/sarfata/pi-blaster). Pi-blaster uses a more
+ * efficient hardware-based PWM timing mechanism than the Python RPi.GPIO library. *Note that PWM frequency cannot be
+ * changed in this implementation due to a limitation with pi-blaster.*
  *
  * @author luejerry
  */
@@ -21,28 +22,23 @@ public class PWMBlaster implements IPWMDriver {
     /**
      * Helper method to send commands to pi-blaster.
      * @param data Command string to write to pi-blaster.
+     * @throws IOException If an I/O error occurs writing to the driver.
      */
-    private static void writePWM(String data) {
-        try {
-            Files.write(pwmpath, (data + "\n").getBytes(Charset.forName("UTF-8")));
-        } catch (IOException e) {
-            System.err.println(e.toString());
-        }
+    private static void writePWM(String data) throws IOException {
+        Files.write(pwmpath, (data + "\n").getBytes(Charset.forName("UTF-8")));
     }
 
     /**
-     * Constructor. Immediately starts PWM on the specified pin at the specified duty cycle.
+     * Constructor. Does not start PWM (use `setDutyCycle()` to start).
      * @param pin PWM output pin (BCM numbering).
      * @param frequency Ignored.
-     * @param dutyCycle PWM duty cycle in range [0.0, 100.0].
      */
-    public PWMBlaster(int pin, double frequency, double dutyCycle) {
+    public PWMBlaster(int pin, double frequency) {
         this.pin = pin;
-        writePWM(pin + "=" + dutyCycle / 100.0);
     }
 
     /**
-     * pi-blaster does not support changing the frequency. Invoking this method only prints a warning message.
+     * **pi-blaster does not support changing the frequency.** Invoking this method only prints a warning message.
      * @param frequency Ignored.
      */
     @Override
@@ -54,7 +50,7 @@ public class PWMBlaster implements IPWMDriver {
      * {@inheritDoc}
      */
     @Override
-    public void setDutyCycle(double dutyCycle) {
+    public void setDutyCycle(double dutyCycle) throws IOException {
         writePWM(pin + "=" + dutyCycle / 100.0);
     }
 }
