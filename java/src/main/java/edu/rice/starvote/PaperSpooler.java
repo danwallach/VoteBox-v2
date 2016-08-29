@@ -2,6 +2,10 @@ package edu.rice.starvote;
 
 import com.pi4j.io.gpio.PinEdge;
 import com.pi4j.io.gpio.PinState;
+import edu.rice.starvote.drivers.IDiverter;
+import edu.rice.starvote.drivers.IMotor;
+import edu.rice.starvote.drivers.IScanner;
+import edu.rice.starvote.util.GPIOListener;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

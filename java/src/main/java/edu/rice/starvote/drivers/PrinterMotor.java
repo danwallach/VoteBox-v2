@@ -1,8 +1,10 @@
-package edu.rice.starvote;
+package edu.rice.starvote.drivers;
 
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinState;
+import edu.rice.starvote.util.GPIOManager;
+import edu.rice.starvote.util.PinMap;
 
 import java.io.IOException;
 

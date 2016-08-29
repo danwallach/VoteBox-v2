@@ -1,4 +1,7 @@
-package edu.rice.starvote;
+package edu.rice.starvote.drivers;
+
+import edu.rice.starvote.util.ExternalProcess;
+import edu.rice.starvote.util.JarResource;
 
 import java.io.IOException;
 import java.nio.file.Path;

@@ -1,5 +1,8 @@
 package edu.rice.starvote;
 
+import edu.rice.starvote.drivers.*;
+import edu.rice.starvote.util.GPIOListener;
+
 /**
  * Main entry point of program. Instantiates all components of the ballot box software and links them together.
  *

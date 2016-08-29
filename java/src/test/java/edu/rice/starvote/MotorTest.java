@@ -1,5 +1,8 @@
 package edu.rice.starvote;
 
+import edu.rice.starvote.drivers.IMotor;
+import edu.rice.starvote.drivers.PWMPython;
+import edu.rice.starvote.drivers.PrinterMotor;
 import org.junit.Test;
 
 /**

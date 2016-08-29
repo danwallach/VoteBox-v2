@@ -1,4 +1,4 @@
-package edu.rice.starvote;
+package edu.rice.starvote.util;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;

@@ -16,7 +16,8 @@ public interface ISpooler {
     DeviceStatus getStatus();
 
     /**
-     * Take in, scan, and process a single page from the paper feed tray.
+     * Take in, scan, and process a single page from the paper feed tray. This method adheres to the following
+     * contract:
      *
      * ##### Preconditions #####
      *  - All necessary hardware and GPIO pins are initialized and ready to take commands

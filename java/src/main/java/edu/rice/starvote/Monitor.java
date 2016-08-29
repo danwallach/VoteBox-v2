@@ -1,6 +1,7 @@
 package edu.rice.starvote;
 
 import com.pi4j.io.gpio.PinEdge;
+import edu.rice.starvote.util.GPIOListener;
 
 /**
  * Main program loop that detects when paper has been inserted into the feed tray and starts the paper feeder.

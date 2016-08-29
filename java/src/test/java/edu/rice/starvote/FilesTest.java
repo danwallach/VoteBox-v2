@@ -1,10 +1,9 @@
 package edu.rice.starvote;
 
+import edu.rice.starvote.util.JarResource;
 import org.junit.Test;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * Created by luej on 8/23/16.

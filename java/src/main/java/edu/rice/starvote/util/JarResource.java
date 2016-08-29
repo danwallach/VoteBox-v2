@@ -1,4 +1,4 @@
-package edu.rice.starvote;
+package edu.rice.starvote.util;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;

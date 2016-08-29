@@ -1,4 +1,4 @@
-package edu.rice.starvote;
+package edu.rice.starvote.drivers;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
