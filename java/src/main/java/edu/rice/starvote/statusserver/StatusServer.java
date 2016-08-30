@@ -1,5 +1,6 @@
-package edu.rice.starvote;
+package edu.rice.starvote.statusserver;
 
+import edu.rice.starvote.BallotStatus;
 import org.eclipse.jetty.websocket.api.Session;
 
 import java.io.IOException;

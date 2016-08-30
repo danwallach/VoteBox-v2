@@ -1,4 +1,6 @@
-package edu.rice.starvote;
+package edu.rice.starvote.statusserver;
+
+import edu.rice.starvote.BallotStatus;
 
 import java.util.LinkedList;
 import java.util.List;
