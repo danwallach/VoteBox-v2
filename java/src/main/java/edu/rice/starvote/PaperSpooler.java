@@ -62,7 +62,7 @@ public class PaperSpooler implements ISpooler {
     public DeviceStatus getStatus() {
         switch (status) {
             case READY:
-                // Make sure there is no paper in the feed path
+                /* Make sure there is no paper in the feed path. */
                 if (halfwaySensor.getState() == PinState.HIGH) { return status; }
                 else {
                     statusUpdater.pushStatus(BallotStatus.OFFLINE);
@@ -71,7 +71,7 @@ public class PaperSpooler implements ISpooler {
                     return status;
                 }
             case ERROR:
-                // Clear error status if paper jam has been cleared from feed path
+                /* Clear error status if paper jam has been cleared from feed path. */
                 if (halfwaySensor.getState() == PinState.HIGH) {
                     statusUpdater.pushStatus(BallotStatus.WAITING);
                     status = DeviceStatus.READY;
@@ -109,9 +109,6 @@ public class PaperSpooler implements ISpooler {
          * ensure synchronization and ordering constraints do not allow the machine to enter an inconsistent state.
          */
 
-        // Used by the final event handler to signal the main thread to continue
-        final CountDownLatch signalDone = new CountDownLatch(1);
-
         statusUpdater.pushStatus(BallotStatus.SPOOLING);
         status = DeviceStatus.BUSY;
 
@@ -119,116 +116,87 @@ public class PaperSpooler implements ISpooler {
             diverter.up();
             motor.forward();
 
-            // Register the event handler for paper entering the halfway sensor.
-            if (!halfwaySensor.waitForEvent(PinEdge.FALLING, () -> {
+            /* Wait for paper to enter the scanner. */
+            final boolean paperSpooled = halfwaySensor.waitForEvent(PinEdge.FALLING, () -> {}, 2000);
+            if (paperSpooled) {
                 System.out.println("Paper taken in, beginning scan");
-                try {
-                    TimeUnit.MILLISECONDS.sleep(100);
-                } catch (InterruptedException e) {
-                    System.err.println(e.toString());
+                waitMillis(100); // Small delay is necessary here to ensure paper is fed
+
+                motor.reverseSlow();
+                String code = scanner.scan(SCANTIME);
+                System.out.println("Code scanned: " + code);
+                motor.stop();
+                // TODO: add delays for accept/reject messages
+                if (code.isEmpty()) {
+                    System.out.println("Ballot not scanned");
+                    statusUpdater.pushStatus(BallotStatus.REJECT);
+                    diverter.up();
+                } else if (validator.validate(code)) {
+                    System.out.println("Ballot code valid");
+                    statusUpdater.pushStatus(BallotStatus.ACCEPT);
+                    diverter.down();
+                } else {
+                    System.out.println("Ballot code invalid");
+                    statusUpdater.pushStatus(BallotStatus.REJECT);
+                    diverter.up();
                 }
 
-                try { // IOException
-                    motor.reverseSlow();
-                    String code = scanner.scan(SCANTIME);
-                    System.out.println("Code scanned: " + code);
-                    motor.stop();
-                    // TODO: add delays for accept/reject messages
-                    if (code.isEmpty()) {
-                        System.out.println("Ballot not scanned");
-                        statusUpdater.pushStatus(BallotStatus.REJECT);
-                        diverter.up();
-                    } else {
-                        if (validator.validate(code)) {
-                            System.out.println("Ballot code valid");
-                            statusUpdater.pushStatus(BallotStatus.ACCEPT);
-                            diverter.down();
-                        } else {
-                            System.out.println("Ballot code invalid");
-                            statusUpdater.pushStatus(BallotStatus.REJECT);
-                            diverter.up();
-                        }
-                    }
-                    try {
-                        // Time to allow diverter to fully actuate
-                        TimeUnit.MILLISECONDS.sleep(1000);
-                    } catch (InterruptedException e) {
-                        System.err.println(e.toString());
-                    }
-                    motor.reverse();
-                } catch (IOException e) {
-                    throw new UncheckedIOException(e);
-                }
+                waitMillis(1000); // Wait for diverter to fully actuate
+                motor.reverse();
 
-                // Register the event handler for paper exiting the halfway sensor.
-                if (!halfwaySensor.waitForEvent(PinEdge.RISING, () -> {
+                /* Wait for paper to exit the scanner. */
+                final boolean paperEjected = halfwaySensor.waitForEvent(PinEdge.RISING, () -> {}, 2000);
+                if (paperEjected) {
                     System.out.println("Spooler cleared");
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(500);
-                    } catch (InterruptedException e) {
-                        System.err.println(e.toString());
-                    }
-                    try {
+                    waitMillis(500); // Ensure paper is completely ejected
+                    motor.stop();
+                    status = DeviceStatus.READY;
+                    statusUpdater.pushStatus(BallotStatus.WAITING);
+                } else {
+                /* Paper did not exit scanner (paper jam). */
+                    if (halfwaySensor.getState().isLow()) {
+                    // Paper still in feeder, abort with error
+                        System.out.println("Spooler jammed");
+                        motor.stop();
+                        status = DeviceStatus.ERROR;
+                        statusUpdater.pushStatus(BallotStatus.OFFLINE);
+                    } else {
+                    // Feeder is clear, continue
+                        System.out.println("Spooler checked clear");
                         motor.stop();
                         status = DeviceStatus.READY;
                         statusUpdater.pushStatus(BallotStatus.WAITING);
-                    } catch (IOException e) {
-                        throw new UncheckedIOException(e);
                     }
-                    signalDone.countDown();
-                }, 2000)) {
-                    try { // IOException
-                        // This block executes if paper exit event not occur within 2s (paper jammed in feeder).
-                        if (halfwaySensor.getState().isLow()) {
-                            // Paper still in feeder, abort with error
-                            System.out.println("Spooler jammed");
-                            motor.stop();
-                            status = DeviceStatus.ERROR;
-                            statusUpdater.pushStatus(BallotStatus.OFFLINE);
-                        } else {
-                            // Feeder is clear, continue
-                            System.out.println("Spooler checked clear");
-                            motor.stop();
-                            status = DeviceStatus.READY;
-                            statusUpdater.pushStatus(BallotStatus.WAITING);
-                        }
-                    } catch (IOException e) {
-                        throw new UncheckedIOException(e);
-                    }
-
-                    // Signal main thread to continue
-                    signalDone.countDown();
                 }
-            }, 2000)) {
-                // This block executes if paper entrance event does not occur in 2s (paper tray was empty).
+
+            } else {
+            /* Paper did not enter scanner. */
+
                 System.out.println("Paper tray empty");
 
                 // Reset the feeder
                 motor.reverse();
-                try {
-                    TimeUnit.MILLISECONDS.sleep(500);
-                } catch (InterruptedException e) {
-                    System.err.println(e.toString());
-                }
+                waitMillis(500);
                 motor.stop();
 
                 status = DeviceStatus.READY;
                 statusUpdater.pushStatus(BallotStatus.WAITING);
-
-                // Signal main thread to continue
-                signalDone.countDown();
-            }
-
-            // Main thread
-            try {
-                final boolean completed = signalDone.await(15000, TimeUnit.MILLISECONDS);
-                System.out.println(completed ? "Paper spool complete" : "Paper spool timed out");
-            } catch (InterruptedException e) {
-                System.err.println(e.toString());
             }
 
         } catch (IOException e) {
             throw new UncheckedIOException(e);
+        }
+    }
+
+    /**
+     * Helper method to make sleep calls less unwieldy. InterruptedExceptions are printed to standard error.
+     * @param delay Delay in milliseconds. Not guaranteed to block for full delay.
+     */
+    private static void waitMillis(int delay) {
+        try {
+            TimeUnit.MILLISECONDS.sleep(delay);
+        } catch (InterruptedException e) {
+            System.err.println(e.toString());
         }
     }
 
