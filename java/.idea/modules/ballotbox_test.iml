@@ -13,7 +13,7 @@
     <orderEntry type="library" name="Gradle: com.sparkjava:spark-core:2.5" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:slf4j-simple:1.7.21" level="project" />
     <orderEntry type="library" name="Gradle: com.j2html:j2html:0.7" level="project" />
-    <orderEntry type="library" name="Gradle: com.pi4j:pi4j-core:1.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.pi4j:pi4j-core:1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-server:9.3.6.v20151106" level="project" />
     <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-webapp:9.3.6.v20151106" level="project" />
     <orderEntry type="library" name="Gradle: org.eclipse.jetty.websocket:websocket-server:9.3.6.v20151106" level="project" />

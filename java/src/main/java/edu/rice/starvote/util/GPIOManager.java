@@ -2,6 +2,7 @@ package edu.rice.starvote.util;
 
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
+import com.pi4j.wiringpi.GpioUtil;
 
 /**
  * Utility class to supply a singleton Pi4J GpioController. All classes wishing to control GPIO via Pi4J should use
@@ -19,6 +20,7 @@ public class GPIOManager {
      */
     public static GpioController controller() {
         if (gpio == null) {
+            deprivilege();
             gpio = GpioFactory.getInstance();
         }
         return gpio;
@@ -35,5 +37,12 @@ public class GPIOManager {
         }
     }
 
-
+    private static void deprivilege() {
+        try {
+            GpioUtil.enableNonPrivilegedAccess();
+        } catch (RuntimeException e) {
+            System.err.println("Pi4J failed to start in non-privileged mode: " + e.getMessage());
+            System.err.println("This application must be started with superuser privileges.");
+        }
+    }
 }
