@@ -38,8 +38,14 @@ public class GPIOManager {
     }
 
     private static void deprivilege() {
+        if (GpioUtil.isPrivilegedAccessRequired()) {
+            System.out.println("Pi4J needs privilege escalation.");
+        } else {
+            System.out.println("Pi4J does not need privilege escalation.");
+        }
         try {
             GpioUtil.enableNonPrivilegedAccess();
+            System.out.println("Pi4J started in non-privileged mode.");
         } catch (RuntimeException e) {
             System.err.println("Pi4J failed to start in non-privileged mode: " + e.getMessage());
             System.err.println("This application must be started with superuser privileges.");
