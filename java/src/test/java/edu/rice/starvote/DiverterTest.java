@@ -1,5 +1,7 @@
 package edu.rice.starvote;
 
+import edu.rice.starvote.drivers.DiverterPython;
+import edu.rice.starvote.drivers.IDiverter;
 import org.junit.Test;
 
 /**

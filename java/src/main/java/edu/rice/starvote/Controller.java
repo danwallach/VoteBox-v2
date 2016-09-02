@@ -1,5 +1,11 @@
 package edu.rice.starvote;
 
+import edu.rice.starvote.drivers.*;
+import edu.rice.starvote.statusserver.StaticContainer;
+import edu.rice.starvote.statusserver.StatusContainer;
+import edu.rice.starvote.statusserver.StatusServer;
+import edu.rice.starvote.util.GPIOListener;
+
 /**
  * Main entry point of program. Instantiates all components of the ballot box software and links them together.
  *
@@ -29,7 +35,7 @@ public class Controller {
         diverter = new DiverterPWM(new PWMBlaster(18, 50));
         scanner = new Scan();
         validator = code -> true;
-        statusProvider = new StatusContainer();
+        statusProvider = StaticContainer.statusContainer;
         updater = status -> {
             System.out.println("Ballot status sent to server: " + status.toString());
             statusProvider.writeStatus(status);

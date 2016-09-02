@@ -1,6 +1,7 @@
 package edu.rice.starvote;
 
-import org.junit.Test;
+import edu.rice.starvote.statusserver.StatusContainer;
+import edu.rice.starvote.statusserver.StatusServer;
 
 import java.util.Timer;
 import java.util.TimerTask;
