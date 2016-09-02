@@ -17,9 +17,10 @@ import java.io.IOException;
 public class StatusWebSocket {
 
     @OnWebSocketConnect
-    public void connected(Session session) {
+    public void connected(Session session) throws IOException {
         StatusServer.sessions.add(session);
         System.out.println(session.getRemoteAddress().getHostString() + " connected");
+        session.getRemote().sendString(StaticContainer.statusContainer.getStatus().toString());
     }
 
     @OnWebSocketClose
