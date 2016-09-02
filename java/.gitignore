@@ -1,0 +1,6 @@
+# IntelliJ files
+.idea/workspace.xml
+.idea/tasks.xml
+
+# Gradle cache
+.gradle/
