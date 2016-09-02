@@ -20,6 +20,9 @@ public class StatusWebSocket {
     public void connected(Session session) throws IOException {
         StatusServer.sessions.add(session);
         System.out.println(session.getRemoteAddress().getHostString() + " connected");
+
+        // Send the box status immediately on connect. Note that other parts of the program MUST be updating (writing)
+        // the static container in order for this to be accurate.
         session.getRemote().sendString(StaticContainer.statusContainer.getStatus().toString());
     }
 
