@@ -1,1 +1,4 @@
 edu.rice.starvote
+edu.rice.starvote.drivers
+edu.rice.starvote.statusserver
+edu.rice.starvote.util
