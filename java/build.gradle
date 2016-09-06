@@ -1,5 +1,5 @@
 group 'edu.rice.starvote'
-version '1.0'
+version '1.5'
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -15,7 +15,8 @@ dependencies {
     compile "com.sparkjava:spark-core:2.5",
             "org.slf4j:slf4j-simple:1.7.21",
             "com.j2html:j2html:0.7",
-            "com.pi4j:pi4j-core:1.1"
+            "com.pi4j:pi4j-core:1.1",
+            fileTree(dir: 'libs', include: '*.jar')
 
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
@@ -38,4 +39,4 @@ buildscript {
 
 apply plugin: 'ch.raffael.pegdown-doclet'
 
-mainClassName = 'edu.rice.starvote.Controller'
+mainClassName = 'edu.rice.starvote.STARController'

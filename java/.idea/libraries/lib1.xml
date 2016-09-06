@@ -1,0 +1,28 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/JavaOCR.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/javacpp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/prince.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/jdom.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/httpmime-4.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/weberknecht-0.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/junit-4.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/fluent-hc-4.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/javacv.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/objenesis-2.1-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/javase.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/jl1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/httpcore-4.2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/objenesis-2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/commons-codec-1.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/objenesis-2.1-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/zxing-core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/httpclient-cache-4.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../STAR-Vote/lib/httpclient-4.2.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
