@@ -36,7 +36,19 @@ buildscript {
         classpath 'ch.raffael.pegdown-doclet:pegdown-doclet:1.2'
     }
 }
-
 apply plugin: 'ch.raffael.pegdown-doclet'
+
+distributions {
+    main {
+        contents {
+            from("../../STAR-Vote/keys") {
+                into "keys"
+            }
+            from ("../../STAR-Vote/rules") {
+                into "rules"
+            }
+        }
+    }
+}
 
 mainClassName = 'edu.rice.starvote.STARController'
