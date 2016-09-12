@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../edu/rice/starvote/drivers/DiverterPython.html" title="class in edu.rice.starvote.drivers"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../edu/rice/starvote/drivers/DiverterPython.html" title="class in edu.rice.starvote.ballotbox.drivers"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?edu/rice/starvote/drivers/DiverterPWM.html" target="_top">Frames</a></li>
@@ -91,7 +91,7 @@ var activeTableTab = "activeTableTab";
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">edu.rice.starvote.drivers</div>
+<div class="subTitle">edu.rice.starvote.ballotbox.drivers</div>
 <h2 title="Class DiverterPWM" class="title">Class DiverterPWM</h2>
 </div>
 <div class="contentContainer">
@@ -99,7 +99,7 @@ var activeTableTab = "activeTableTab";
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>edu.rice.starvote.drivers.DiverterPWM</li>
+<li>edu.rice.starvote.ballotbox.drivers.DiverterPWM</li>
 </ul>
 </li>
 </ul>
@@ -108,13 +108,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../edu/rice/starvote/drivers/IDiverter.html" title="interface in edu.rice.starvote.drivers">IDiverter</a></dd>
+<dd><a href="../../../../edu/rice/starvote/drivers/IDiverter.html" title="interface in edu.rice.starvote.ballotbox.drivers">IDiverter</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">DiverterPWM</span>
 extends java.lang.Object
-implements <a href="../../../../edu/rice/starvote/drivers/IDiverter.html" title="interface in edu.rice.starvote.drivers">IDiverter</a></pre>
+implements <a href="../../../../edu/rice/starvote/drivers/IDiverter.html" title="interface in edu.rice.starvote.ballotbox.drivers">IDiverter</a></pre>
 <div class="block"><p>Diverter servo control using a generic IPWMDriver. The up and down positions are calibrated to a HB-6001HD servo.</p><h5>Example</h5><p>Using the pi-blaster based PWM driver (recommended):</p>
 <pre><code class="java">IPWMDriver pwm = new PWMBlaster(PIN_NUMBER, 50);
 IDiverter diverter = new DiverterPWM(pwm);
@@ -138,7 +138,7 @@ diverter.up();
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../edu/rice/starvote/drivers/DiverterPWM.html#DiverterPWM-edu.rice.starvote.drivers.IPWMDriver-">DiverterPWM</a></span>(<a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.drivers">IPWMDriver</a>&nbsp;pwm)</code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../edu/rice/starvote/drivers/DiverterPWM.html#DiverterPWM-edu.rice.starvote.drivers.IPWMDriver-">DiverterPWM</a></span>(<a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.ballotbox.drivers">IPWMDriver</a>&nbsp;pwm)</code>
 <div class="block">Constructor.</div>
 </td>
 </tr>
@@ -197,13 +197,13 @@ diverter.up();
 <ul class="blockListLast">
 <li class="blockList">
 <h4>DiverterPWM</h4>
-<pre>public&nbsp;DiverterPWM(<a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.drivers">IPWMDriver</a>&nbsp;pwm)</pre>
+<pre>public&nbsp;DiverterPWM(<a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.ballotbox.drivers">IPWMDriver</a>&nbsp;pwm)</pre>
 <div class="block"><p>Constructor. Does not change the servo state.</p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>pwm</code> - PWM driver to use (e.g. <code>PWMBlaster</code>).</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../edu/rice/starvote/drivers/PWMBlaster.html" title="class in edu.rice.starvote.drivers"><code>PWMBlaster</code></a></dd>
+<dd><a href="../../../../edu/rice/starvote/drivers/PWMBlaster.html" title="class in edu.rice.starvote.ballotbox.drivers"><code>PWMBlaster</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -227,7 +227,7 @@ diverter.up();
 <div class="block"><p>Move diverter to the up position.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../edu/rice/starvote/drivers/IDiverter.html#up--">up</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IDiverter.html" title="interface in edu.rice.starvote.drivers">IDiverter</a></code></dd>
+<dd><code><a href="../../../../edu/rice/starvote/drivers/IDiverter.html#up--">up</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IDiverter.html" title="interface in edu.rice.starvote.ballotbox.drivers">IDiverter</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - If an error occurs when communicating to the device driver.</dd>
 </dl>
@@ -245,7 +245,7 @@ diverter.up();
 <div class="block"><p>Move diverter to the down position.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../edu/rice/starvote/drivers/IDiverter.html#down--">down</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IDiverter.html" title="interface in edu.rice.starvote.drivers">IDiverter</a></code></dd>
+<dd><code><a href="../../../../edu/rice/starvote/drivers/IDiverter.html#down--">down</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IDiverter.html" title="interface in edu.rice.starvote.ballotbox.drivers">IDiverter</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - If an error occurs when communicating to the device driver.</dd>
 </dl>
@@ -283,7 +283,7 @@ hljs.initHighlightingOnLoad();
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../edu/rice/starvote/drivers/DiverterPython.html" title="class in edu.rice.starvote.drivers"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../edu/rice/starvote/drivers/DiverterPython.html" title="class in edu.rice.starvote.ballotbox.drivers"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?edu/rice/starvote/drivers/DiverterPWM.html" target="_top">Frames</a></li>

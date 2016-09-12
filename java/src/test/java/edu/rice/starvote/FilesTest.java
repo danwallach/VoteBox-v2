@@ -1,6 +1,6 @@
 package edu.rice.starvote;
 
-import edu.rice.starvote.util.JarResource;
+import edu.rice.starvote.ballotbox.util.JarResource;
 import org.junit.Test;
 
 import java.nio.file.Path;

@@ -1,7 +1,7 @@
 package edu.rice.starvote;
 
-import edu.rice.starvote.drivers.IScanner;
-import edu.rice.starvote.drivers.Scan;
+import edu.rice.starvote.ballotbox.drivers.IScanner;
+import edu.rice.starvote.ballotbox.drivers.Scan;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

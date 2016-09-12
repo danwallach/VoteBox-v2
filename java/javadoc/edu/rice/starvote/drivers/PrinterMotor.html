@@ -48,8 +48,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../edu/rice/starvote/drivers/IScanner.html" title="interface in edu.rice.starvote.drivers"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../edu/rice/starvote/drivers/PWMBlaster.html" title="class in edu.rice.starvote.drivers"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../edu/rice/starvote/drivers/IScanner.html" title="interface in edu.rice.starvote.ballotbox.drivers"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../edu/rice/starvote/drivers/PWMBlaster.html" title="class in edu.rice.starvote.ballotbox.drivers"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?edu/rice/starvote/drivers/PrinterMotor.html" target="_top">Frames</a></li>
@@ -91,7 +91,7 @@ var activeTableTab = "activeTableTab";
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">edu.rice.starvote.drivers</div>
+<div class="subTitle">edu.rice.starvote.ballotbox.drivers</div>
 <h2 title="Class PrinterMotor" class="title">Class PrinterMotor</h2>
 </div>
 <div class="contentContainer">
@@ -99,7 +99,7 @@ var activeTableTab = "activeTableTab";
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>edu.rice.starvote.drivers.PrinterMotor</li>
+<li>edu.rice.starvote.ballotbox.drivers.PrinterMotor</li>
 </ul>
 </li>
 </ul>
@@ -108,13 +108,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.drivers">IMotor</a></dd>
+<dd><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.ballotbox.drivers">IMotor</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">PrinterMotor</span>
 extends java.lang.Object
-implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.drivers">IMotor</a></pre>
+implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.ballotbox.drivers">IMotor</a></pre>
 <div class="block"><p>Reference implementation of the feed motor controller, driving the main motor in an HP 1010 printer.</p></div>
 </li>
 </ul>
@@ -136,14 +136,14 @@ implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="in
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../edu/rice/starvote/drivers/PrinterMotor.html#PrinterMotor-int-int-edu.rice.starvote.drivers.IPWMDriver-">PrinterMotor</a></span>(int&nbsp;forwardPin,
             int&nbsp;reversePin,
-            <a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.drivers">IPWMDriver</a>&nbsp;driver)</code>
+            <a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.ballotbox.drivers">IPWMDriver</a>&nbsp;driver)</code>
 <div class="block">Constructor.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../edu/rice/starvote/drivers/PrinterMotor.html#PrinterMotor-com.pi4j.io.gpio.Pin-com.pi4j.io.gpio.Pin-edu.rice.starvote.drivers.IPWMDriver-">PrinterMotor</a></span>(com.pi4j.io.gpio.Pin&nbsp;forwardPin,
             com.pi4j.io.gpio.Pin&nbsp;reversePin,
-            <a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.drivers">IPWMDriver</a>&nbsp;driver)</code>
+            <a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.ballotbox.drivers">IPWMDriver</a>&nbsp;driver)</code>
 <div class="block">Constructor.</div>
 </td>
 </tr>
@@ -234,7 +234,7 @@ implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="in
 <h4>PrinterMotor</h4>
 <pre>public&nbsp;PrinterMotor(int&nbsp;forwardPin,
                     int&nbsp;reversePin,
-                    <a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.drivers">IPWMDriver</a>&nbsp;driver)</pre>
+                    <a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.ballotbox.drivers">IPWMDriver</a>&nbsp;driver)</pre>
 <div class="block"><p>Constructor.</p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -252,7 +252,7 @@ implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="in
 <h4>PrinterMotor</h4>
 <pre>public&nbsp;PrinterMotor(com.pi4j.io.gpio.Pin&nbsp;forwardPin,
                     com.pi4j.io.gpio.Pin&nbsp;reversePin,
-                    <a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.drivers">IPWMDriver</a>&nbsp;driver)</pre>
+                    <a href="../../../../edu/rice/starvote/drivers/IPWMDriver.html" title="interface in edu.rice.starvote.ballotbox.drivers">IPWMDriver</a>&nbsp;driver)</pre>
 <div class="block"><p>Constructor.</p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -282,7 +282,7 @@ implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="in
 <div class="block"><p>Stop the motor.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#stop--">stop</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.drivers">IMotor</a></code></dd>
+<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#stop--">stop</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.ballotbox.drivers">IMotor</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - If an error occurs when communicating with the device driver.</dd>
 </dl>
@@ -300,7 +300,7 @@ implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="in
 <div class="block"><p>Move motor forward at full speed.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#forward--">forward</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.drivers">IMotor</a></code></dd>
+<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#forward--">forward</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.ballotbox.drivers">IMotor</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - If an error occurs when communicating with the device driver.</dd>
 </dl>
@@ -318,7 +318,7 @@ implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="in
 <div class="block"><p>Move motor forward at slow speed. The exact speed is undefined but should be less than half full. For precise speed control, use the method <code>forward(double speed)</code>.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#forwardSlow--">forwardSlow</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.drivers">IMotor</a></code></dd>
+<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#forwardSlow--">forwardSlow</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.ballotbox.drivers">IMotor</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - If an error occurs when communicating with the device driver.</dd>
 </dl>
@@ -336,7 +336,7 @@ implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="in
 <div class="block"><p>Move motor forward at a specified speed.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#forward-double-">forward</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.drivers">IMotor</a></code></dd>
+<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#forward-double-">forward</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.ballotbox.drivers">IMotor</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>speed</code> - Value in range [0.0, 100.0].</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -356,7 +356,7 @@ implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="in
 <div class="block"><p>Move motor reverse at full speed.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#reverse--">reverse</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.drivers">IMotor</a></code></dd>
+<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#reverse--">reverse</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.ballotbox.drivers">IMotor</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - If an error occurs when communicating with the device driver.</dd>
 </dl>
@@ -374,7 +374,7 @@ implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="in
 <div class="block"><p>Move motor reverse at slow speed. The exact speed is undefined but should be less than half full. For Precise speed control, use the method <code>reverse(double speed)</code>.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#reverseSlow--">reverseSlow</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.drivers">IMotor</a></code></dd>
+<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#reverseSlow--">reverseSlow</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.ballotbox.drivers">IMotor</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.io.IOException</code> - If an error occurs when communicating with the device driver.</dd>
 </dl>
@@ -392,7 +392,7 @@ implements <a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="in
 <div class="block"><p>Move motor reverse at a specified speed.</p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#reverse-double-">reverse</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.drivers">IMotor</a></code></dd>
+<dd><code><a href="../../../../edu/rice/starvote/drivers/IMotor.html#reverse-double-">reverse</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../edu/rice/starvote/drivers/IMotor.html" title="interface in edu.rice.starvote.ballotbox.drivers">IMotor</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>speed</code> - Value in range [0.0, 100.0].</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -431,8 +431,8 @@ hljs.initHighlightingOnLoad();
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../edu/rice/starvote/drivers/IScanner.html" title="interface in edu.rice.starvote.drivers"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../edu/rice/starvote/drivers/PWMBlaster.html" title="class in edu.rice.starvote.drivers"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../edu/rice/starvote/drivers/IScanner.html" title="interface in edu.rice.starvote.ballotbox.drivers"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../edu/rice/starvote/drivers/PWMBlaster.html" title="class in edu.rice.starvote.ballotbox.drivers"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?edu/rice/starvote/drivers/PrinterMotor.html" target="_top">Frames</a></li>
