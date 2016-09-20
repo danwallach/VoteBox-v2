@@ -45,6 +45,13 @@ task fxStartScript(type: CreateStartScripts) {
     classpath = jar.outputs.files + project.configurations.runtime
 }
 
+task swingStartScript(type: CreateStartScripts) {
+    mainClassName = 'edu.rice.starvote.ballotbox.SwingController'
+    applicationName = 'ballotboxsw'
+    outputDir = new File(project.buildDir, 'scripts')
+    classpath = jar.outputs.files + project.configurations.runtime
+}
+
 distributions {
     main {
         contents {
@@ -55,6 +62,10 @@ distributions {
                 into "rules"
             }
             from(fxStartScript) {
+                into "bin"
+                fileMode = 0755
+            }
+            from(swingStartScript) {
                 into "bin"
                 fileMode = 0755
             }
