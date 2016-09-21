@@ -6,6 +6,7 @@ import edu.rice.starvote.ballotbox.statusserver.StatusContainer;
 import edu.rice.starvote.ballotbox.statusserver.StatusServer;
 import edu.rice.starvote.ballotbox.swingui.DisplayController;
 import edu.rice.starvote.ballotbox.swingui.SwingDisplay;
+import edu.rice.starvote.ballotbox.swingui.VoiceController;
 import edu.rice.starvote.ballotbox.util.GPIOListener;
 
 /**
@@ -37,7 +38,11 @@ public class SwingController {
         scanner = new Scan();
         validator = code -> true;
         display = new DisplayController(new SwingDisplay());
-        updater = display;
+        final IStatusUpdate voiceController = new VoiceController();
+        updater = status -> {
+            display.pushStatus(status);
+            voiceController.pushStatus(status);
+        };
         spooler = new PaperSpooler(updater, diverter, motor, halfwaySensor, scanner, validator);
         monitor = new Monitor(listener, spooler);
     }

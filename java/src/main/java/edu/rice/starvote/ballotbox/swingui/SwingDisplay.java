@@ -59,8 +59,11 @@ public class SwingDisplay extends JFrame {
     }
 
     public void setText(String text, String size, String textColor, String bgColor) {
-        statusText.setText(String.format(FORMATSTRING, size, textColor, text));
-        contentPane.setBackground(Color.decode(bgColor));
+        EventQueue.invokeLater(() -> {
+
+            statusText.setText(String.format(FORMATSTRING, size, textColor, text));
+            contentPane.setBackground(Color.decode(bgColor));
+        });
     }
 
 }
