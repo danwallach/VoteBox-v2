@@ -23,14 +23,14 @@ public class DisplayController implements IStatusUpdate {
             case ACCEPT:
                 display.setText(
                         "Your ballot was cast!",
-                        "128px",
+                        "96px",
                         "#FFFFFF",
                         "#388E3C");
                 break;
             case REJECT:
                 display.setText(
                         "Your ballot was not recognized. Only insert unfolded ballots.",
-                        "80px",
+                        "64px",
                         "#FFFFFF",
                         "#F44336");
                 break;
@@ -45,7 +45,7 @@ public class DisplayController implements IStatusUpdate {
             case WAITING:
                 display.setText(
                         "Please insert your ballot.",
-                        "128px",
+                        "96px",
                         "#000000",
                         "#FFFFFF"
                 );
@@ -53,14 +53,14 @@ public class DisplayController implements IStatusUpdate {
             case OFFLINE:
                 display.setText(
                         "Use next machine.",
-                        "128px",
+                        "96px",
                         "#FFFFFF",
                         "#F44336");
                 break;
             default:
                 display.setText(
                         "Error: unknown status.",
-                        "128px",
+                        "96px",
                         "#FFFFFF",
                         "#F44336"
                 );

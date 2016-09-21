@@ -81,9 +81,7 @@ public class VoicePlayer {
      */
     public void waitUntilFinished() {
         try {
-            System.out.println("attempting " + lock.availablePermits());
             lock.acquire();
-            System.out.println("acquired " + lock.availablePermits());
             lock.release();
         } catch (InterruptedException e) {
             e.printStackTrace();

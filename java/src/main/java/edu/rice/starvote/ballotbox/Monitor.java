@@ -3,6 +3,8 @@ package edu.rice.starvote.ballotbox;
 import com.pi4j.io.gpio.PinEdge;
 import edu.rice.starvote.ballotbox.util.GPIOListener;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Main program loop that detects when paper has been inserted into the feed tray and starts the paper feeder.
  *
@@ -31,10 +33,19 @@ public class Monitor {
         while (true) {
             // Blocks until a GPIO interrupt is triggered by the paper sensor.
             listener.waitForEvent(PinEdge.FALLING, () -> {});
-            System.out.println("Paper detected");
+            System.out.print("Paper detected... ");
             if (spooler.getStatus() != DeviceStatus.READY) {
                 System.out.println("Device " + spooler.getStatus());
             } else {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(1000);
+                    if (listener.getState().isHigh()) {
+                        System.out.println("false positive");
+                        continue;
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 // Process all available pages.
                 while (listener.getState().isLow()) {
                     System.out.println("Spooling in page");
