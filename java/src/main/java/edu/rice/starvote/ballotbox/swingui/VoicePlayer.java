@@ -68,12 +68,13 @@ public class VoicePlayer {
                     } else if (type.equals(LineEvent.Type.STOP)) {
                         lock.release();
                         System.out.println("stopped " + lock.availablePermits());
+                        clip.close();
                     }
                 });
                 lock.acquire();
                 clip.open(audioStream);
                 clip.start();
-                clipCache.put(path, clip);
+//                clipCache.put(path, clip);
             } catch (LineUnavailableException | InterruptedException e) {
                 e.printStackTrace();
             }
