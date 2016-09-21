@@ -1,6 +1,7 @@
 package edu.rice.starvote.ballotbox.swingui;
 
 import javax.sound.sampled.*;
+import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,7 +41,8 @@ public class VoicePlayer {
         } else {
             final InputStream fileStream = getClass().getClassLoader().getResourceAsStream(path);
             if (fileStream == null) throw new FileNotFoundException("File " + path + " could not be found.");
-            final AudioInputStream audioStream = AudioSystem.getAudioInputStream(fileStream);
+            final BufferedInputStream bufferedStream = new BufferedInputStream(fileStream);
+            final AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedStream);
             final DataLine.Info info = new DataLine.Info(Clip.class, audioStream.getFormat());
             try {
                 final Clip clip = (Clip) AudioSystem.getLine(info);
