@@ -43,9 +43,19 @@ public class VoicePlayer {
             if (fileStream == null) throw new FileNotFoundException("File " + path + " could not be found.");
             final BufferedInputStream bufferedStream = new BufferedInputStream(fileStream);
             final AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedStream);
+//            final Mixer mixer = AudioSystem.getMixer(AudioSystem.getMixerInfo()[3]);
+            Mixer mixer = AudioSystem.getMixer(null);
+            for (Mixer.Info mixerInfo : AudioSystem.getMixerInfo()) {
+                if (mixerInfo.getName().contains("[plughw:1,0]")) {
+                    mixer = AudioSystem.getMixer(mixerInfo);
+                    break;
+                }
+            }
+            System.out.println("Playing sound with audio device: " + mixer.getMixerInfo().getName());
             final DataLine.Info info = new DataLine.Info(Clip.class, audioStream.getFormat());
+            //System.out.println(info.toString());
             try {
-                final Clip clip = (Clip) AudioSystem.getLine(info);
+                final Clip clip = (Clip) mixer.getLine(info);
                 clip.addLineListener((e) -> {
                     final LineEvent.Type type = e.getType();
                     if (type.equals(LineEvent.Type.START)) {
