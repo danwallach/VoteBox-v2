@@ -17,6 +17,17 @@ public class VoicePlayer {
     private final Map<String, Clip> clipCache = new ConcurrentHashMap<>(2);
     private final Semaphore lock = new Semaphore(1);
 
+    static Mixer mixer = AudioSystem.getMixer(null);
+    static {
+        for (Mixer.Info mixerInfo : AudioSystem.getMixerInfo()) {
+            if (mixerInfo.getName().contains("[plughw:1,0]")) {
+                mixer = AudioSystem.getMixer(mixerInfo);
+                break;
+            }
+        }
+
+    }
+
     /**
      * Plays the specified WAV audio file. This method returns immediately after playback begins. If this player is
      * currently playing another file, playback of the new file will not begin until the previous file is finished
@@ -44,13 +55,7 @@ public class VoicePlayer {
             final BufferedInputStream bufferedStream = new BufferedInputStream(fileStream);
             final AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedStream);
 //            final Mixer mixer = AudioSystem.getMixer(AudioSystem.getMixerInfo()[3]);
-            Mixer mixer = AudioSystem.getMixer(null);
-            for (Mixer.Info mixerInfo : AudioSystem.getMixerInfo()) {
-                if (mixerInfo.getName().contains("[plughw:1,0]")) {
-                    mixer = AudioSystem.getMixer(mixerInfo);
-                    break;
-                }
-            }
+
             System.out.println("Playing sound with audio device: " + mixer.getMixerInfo().getName());
             final DataLine.Info info = new DataLine.Info(Clip.class, audioStream.getFormat());
             //System.out.println(info.toString());
