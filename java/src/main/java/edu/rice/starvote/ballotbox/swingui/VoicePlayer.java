@@ -1,5 +1,7 @@
 package edu.rice.starvote.ballotbox.swingui;
 
+import sun.audio.AudioStream;
+
 import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
@@ -14,7 +16,7 @@ import java.util.concurrent.Semaphore;
  */
 public class VoicePlayer {
 
-    private final Map<String, Clip> clipCache = new ConcurrentHashMap<>(2);
+    private final Map<String, AudioInputStream> clipCache = new ConcurrentHashMap<>(2);
     private final Semaphore lock = new Semaphore(1);
 
     static Mixer mixer = AudioSystem.getMixer(null);
@@ -43,9 +45,9 @@ public class VoicePlayer {
         if (clipCache.containsKey(path)) {
             try {
                 lock.acquire();
-                final Clip cachedClip = clipCache.get(path);
-                cachedClip.setFramePosition(0);
-                cachedClip.start();
+                final AudioInputStream cachedStream = clipCache.get(path);
+                cachedStream.reset();
+                playStream(cachedStream);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -55,29 +57,33 @@ public class VoicePlayer {
             final BufferedInputStream bufferedStream = new BufferedInputStream(fileStream);
             final AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedStream);
 //            final Mixer mixer = AudioSystem.getMixer(AudioSystem.getMixerInfo()[3]);
-
             System.out.println("Playing sound with audio device: " + mixer.getMixerInfo().getName());
-            final DataLine.Info info = new DataLine.Info(Clip.class, audioStream.getFormat());
-            //System.out.println(info.toString());
-            try {
-                final Clip clip = (Clip) mixer.getLine(info);
-                clip.addLineListener((e) -> {
-                    final LineEvent.Type type = e.getType();
-                    if (type.equals(LineEvent.Type.START)) {
-                        assert lock.availablePermits() == 1 || lock.availablePermits() == 0 : "Synchronization error; multiple semaphores generated";
-                    } else if (type.equals(LineEvent.Type.STOP)) {
-                        lock.release();
-                        System.out.println("stopped " + lock.availablePermits());
-                        clip.close();
-                    }
-                });
-                lock.acquire();
-                clip.open(audioStream);
-                clip.start();
+            playStream(audioStream);
+            clipCache.put(path, audioStream);
+        }
+    }
+
+    private void playStream(AudioInputStream audioStream) throws IOException {
+        final DataLine.Info info = new DataLine.Info(Clip.class, audioStream.getFormat());
+        //System.out.println(info.toString());
+        try {
+            final Clip clip = (Clip) mixer.getLine(info);
+            clip.addLineListener((e) -> {
+                final LineEvent.Type type = e.getType();
+                if (type.equals(LineEvent.Type.START)) {
+                    assert lock.availablePermits() == 1 || lock.availablePermits() == 0 : "Synchronization error; multiple semaphores generated";
+                } else if (type.equals(LineEvent.Type.STOP)) {
+                    lock.release();
+                    System.out.println("stopped " + lock.availablePermits());
+                    clip.close();
+                }
+            });
+            lock.acquire();
+            clip.open(audioStream);
+            clip.start();
 //                clipCache.put(path, clip);
-            } catch (LineUnavailableException | InterruptedException e) {
-                e.printStackTrace();
-            }
+        } catch (LineUnavailableException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
