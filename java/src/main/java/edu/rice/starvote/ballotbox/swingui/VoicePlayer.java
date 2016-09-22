@@ -1,7 +1,5 @@
 package edu.rice.starvote.ballotbox.swingui;
 
-import sun.audio.AudioStream;
-
 import javax.sound.sampled.*;
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
@@ -16,10 +14,10 @@ import java.util.concurrent.Semaphore;
  */
 public class VoicePlayer {
 
-    private final Map<String, AudioInputStream> clipCache = new ConcurrentHashMap<>(2);
     private final Semaphore lock = new Semaphore(1);
 
-    static Mixer mixer = AudioSystem.getMixer(null);
+    private static Mixer mixer = AudioSystem.getMixer(null);
+
     static {
         for (Mixer.Info mixerInfo : AudioSystem.getMixerInfo()) {
             if (mixerInfo.getName().contains("[plughw:1,0]")) {
@@ -34,33 +32,21 @@ public class VoicePlayer {
      * Plays the specified WAV audio file. This method returns immediately after playback begins. If this player is
      * currently playing another file, playback of the new file will not begin until the previous file is finished
      * playing.
-     *
+     * <p>
      * If the caller desires to block until playback is complete, use `waitUntilFinished()` after invoking this method.
      *
      * @param path Path to audio file. Must be on the resource path.
-     * @throws IOException If an I/O error occurs, or file could not be found.
+     * @throws IOException                   If an I/O error occurs, or file could not be found.
      * @throws UnsupportedAudioFileException If the audio file is in an unsupported format.
      */
     public void play(String path) throws IOException, UnsupportedAudioFileException {
-        if (clipCache.containsKey(path)) {
-            try {
-                lock.acquire();
-                final AudioInputStream cachedStream = clipCache.get(path);
-                cachedStream.reset();
-                playStream(cachedStream);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        } else {
-            final InputStream fileStream = getClass().getClassLoader().getResourceAsStream(path);
-            if (fileStream == null) throw new FileNotFoundException("File " + path + " could not be found.");
-            final BufferedInputStream bufferedStream = new BufferedInputStream(fileStream);
-            final AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedStream);
+        final InputStream fileStream = getClass().getClassLoader().getResourceAsStream(path);
+        if (fileStream == null) throw new FileNotFoundException("File " + path + " could not be found.");
+        final BufferedInputStream bufferedStream = new BufferedInputStream(fileStream);
+        final AudioInputStream audioStream = AudioSystem.getAudioInputStream(bufferedStream);
 //            final Mixer mixer = AudioSystem.getMixer(AudioSystem.getMixerInfo()[3]);
-            System.out.println("Playing sound with audio device: " + mixer.getMixerInfo().getName());
-            playStream(audioStream);
-            clipCache.put(path, audioStream);
-        }
+        System.out.println("Playing sound with audio device: " + mixer.getMixerInfo().getName());
+        playStream(audioStream);
     }
 
     private void playStream(AudioInputStream audioStream) throws IOException {
