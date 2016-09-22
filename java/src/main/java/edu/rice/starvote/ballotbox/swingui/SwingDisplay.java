@@ -1,6 +1,7 @@
 package edu.rice.starvote.ballotbox.swingui;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -50,6 +51,11 @@ public class SwingDisplay extends JFrame {
         setContentPane(contentPane);
         statusText.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(statusText, BorderLayout.CENTER);
+
+        /* Hide the cursor in the JFrame. */
+        final BufferedImage cursorRaster = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+        final Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorRaster, new Point(0, 0), "hidden");
+        setCursor(cursor);
     }
 
     public void start() {
