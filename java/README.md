@@ -51,6 +51,14 @@ cd build/install/ballotbox
 bin/ballotboxsw
 ~~~
 
+### Running from remote session
+If running the Swing-based variant over SSH, the X11 display must be set to
+the host's physical display. This can be done by setting the `DISPLAY`
+environment variable:
+
+`export DISPLAY=:0.0`
+
+
 ## Deploy
 To package the application in a self-contained archive package:
 
