@@ -1,4 +1,4 @@
-# Ballot box driver, Java edition 1.5
+# Ballot box driver, Java edition 1.7
 
 Fully event-driven implementation of the ballot box driver software in Java.
 The web client for the screen display and sound is not included; it is
@@ -30,10 +30,26 @@ To build the application locally:
 `./gradlew installApp`
 
 This will package the application and all dependencies into JARs and place
-them in the directory `build/install/ballotbox`. To run the installed
-application, run:
+them in the directory `build/install/ballotbox`. Three variants of the
+application are installed:
 
-`build/install/ballotbox/bin/ballotbox`
+* `bin/ballotbox`: Networked to the STAR-Vote protocol and displays status
+messages via a web-based UI. The UI itself must be downloaded and hosted
+separately (see Votebox-Display).
+* `bin/ballotboxsw`: Non-networked and displays status messages via Swing.
+* `bin/ballotboxfx`: **Experimental.** Displays status messages via JavaFX.
+Note that JavaFX is not included in the ARM JDK distribution, so this cannot
+actually be run on the RPi.
+
+**Important**: from the command line, the application must be started with
+the working directory at the installation root. This is currently necessary
+due to design flaws in legacy STAR-Vote code. For example, to start
+`ballotboxsw`, use
+
+~~~
+cd build/install/ballotbox
+bin/ballotboxsw
+~~~
 
 ## Deploy
 To package the application in a self-contained archive package:
