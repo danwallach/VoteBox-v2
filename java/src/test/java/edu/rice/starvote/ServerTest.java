@@ -1,7 +1,8 @@
 package edu.rice.starvote;
 
-import edu.rice.starvote.statusserver.StatusContainer;
-import edu.rice.starvote.statusserver.StatusServer;
+import edu.rice.starvote.ballotbox.BallotStatus;
+import edu.rice.starvote.ballotbox.statusserver.StatusContainer;
+import edu.rice.starvote.ballotbox.statusserver.StatusServer;
 
 import java.util.Timer;
 import java.util.TimerTask;

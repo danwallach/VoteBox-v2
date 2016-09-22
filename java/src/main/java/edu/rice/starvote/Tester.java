@@ -1,6 +1,6 @@
 package edu.rice.starvote;
 
-import edu.rice.starvote.util.ExternalProcess;
+import edu.rice.starvote.ballotbox.util.ExternalProcess;
 
 import java.io.IOException;
 

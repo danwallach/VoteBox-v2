@@ -1,8 +1,8 @@
 package edu.rice.starvote;
 
-import edu.rice.starvote.drivers.IMotor;
-import edu.rice.starvote.drivers.PWMPython;
-import edu.rice.starvote.drivers.PrinterMotor;
+import edu.rice.starvote.ballotbox.drivers.IMotor;
+import edu.rice.starvote.ballotbox.drivers.PWMPython;
+import edu.rice.starvote.ballotbox.drivers.PrinterMotor;
 import org.junit.Test;
 
 /**
