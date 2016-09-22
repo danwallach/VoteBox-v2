@@ -14,6 +14,9 @@ public class DisplayController implements IStatusUpdate {
         this.display = display;
     }
 
+    /**
+     * Start the status display UI, making it visible.
+     */
     public void start() {
         display.start();
     }

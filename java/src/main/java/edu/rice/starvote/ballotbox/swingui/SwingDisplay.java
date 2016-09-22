@@ -11,8 +11,10 @@ import javax.swing.SwingConstants;
 public class SwingDisplay extends JFrame {
 
     public static final String FORMATSTRING =
-            "<html><div style=\"text-align: center; font-family: \'Roboto Condensed\', \'DejaVu Sans\', serif; font-size: %s; color: %s;\">" +
-                    "%s</div></html>";
+            "<html><div style=\"text-align: center; " +
+                    "font-family: \'Roboto Condensed\', \'DejaVu Sans\', sans-serif; " +
+                    "font-size: %s; " +
+                    "color: %s;\">%s</div></html>";
     private JPanel contentPane;
     private final JLabel statusText = new JLabel(FORMATSTRING);
 

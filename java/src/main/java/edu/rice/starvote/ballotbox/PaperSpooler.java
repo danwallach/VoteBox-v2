@@ -113,7 +113,7 @@ public class PaperSpooler implements ISpooler {
 
         try { // IOException
             diverter.up();
-            motor.forward();
+            motor.forward(70);
 
             /* Wait for paper to enter the scanner. */
             final boolean paperSpooled = halfwaySensor.waitForEvent(PinEdge.FALLING, () -> {}, 2000);
@@ -141,7 +141,7 @@ public class PaperSpooler implements ISpooler {
                 }
 
                 waitMillis(1000); // Wait for diverter to fully actuate
-                motor.reverse();
+                motor.reverse(70);
 
                 /* Wait for paper to exit the scanner. */
                 final boolean paperEjected = halfwaySensor.waitForEvent(PinEdge.RISING, () -> {}, 2000);
