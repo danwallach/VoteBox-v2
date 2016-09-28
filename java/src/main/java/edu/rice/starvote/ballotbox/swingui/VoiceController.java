@@ -27,9 +27,9 @@ public class VoiceController implements IStatusUpdate {
                     break;
                 case REJECT:
                     player.play("reject.wav");
-                    player.waitUntilFinished();
                     break;
             }
+            player.waitUntilFinished();
         } catch (IOException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
