@@ -39,13 +39,12 @@ public class GPIOListener {
      * desired.
      *
      * @param edge Direction of state change to listen for: `RISING`, `FALLING`, or `BOTH`.
-     * @param task Task to execute when event is detected.
      * @return True if event occured, false if interrupted while waiting.
      */
-    public boolean waitForEvent(PinEdge edge, Runnable task) {
+    public boolean waitForEvent(PinEdge edge) {
         boolean didTask;
         final CountDownLatch latch = new CountDownLatch(1);
-        final GpioPinListenerDigital listener = generateListener(edge, task, latch);
+        final GpioPinListenerDigital listener = generateListener(edge, () -> {}, latch);
         sensor.addListener(listener);
         try {
             latch.await();
@@ -70,14 +69,13 @@ public class GPIOListener {
      * desired.
      *
      * @param edge Direction of state change to listen for: `RISING`, `FALLING`, or `BOTH`.
-     * @param task Task to execute when event is detected.
      * @param timeout Time to wait in milliseconds.
      * @return True if event occured, false if timeout expired or interrupted.
      */
-    public boolean waitForEvent(PinEdge edge, Runnable task, long timeout) {
+    public boolean waitForEvent(PinEdge edge, long timeout) {
         boolean didTask;
         final CountDownLatch latch = new CountDownLatch(1);
-        final GpioPinListenerDigital listener = generateListener(edge, task, latch);
+        final GpioPinListenerDigital listener = generateListener(edge, () -> {}, latch);
         sensor.addListener(listener);
         try {
             didTask = latch.await(timeout, TimeUnit.MILLISECONDS);
@@ -87,7 +85,6 @@ public class GPIOListener {
         } finally {
             sensor.removeAllListeners();
         }
-        sensor.removeAllListeners();
         return didTask;
     }
 

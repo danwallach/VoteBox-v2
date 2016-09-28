@@ -9,6 +9,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+/**
+ * Swing-based ballot box display. This replaces the previous browser-based UI. The display runs in full screen
+ * and can display a centered text string. The size and color of the string, as well as the background color,
+ * can be specified using HTML size and color codes.
+ *
+ * @author luejerry
+ */
 public class SwingDisplay extends JFrame {
 
     public static final String FORMATSTRING =

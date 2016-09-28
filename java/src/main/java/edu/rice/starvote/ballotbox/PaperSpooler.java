@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class PaperSpooler implements ISpooler {
 
-    final static int SCANTIME = 4;
+    final static int SCANTIME = 5;
 
     private DeviceStatus status = DeviceStatus.READY;
     private final IStatusUpdate statusUpdater;
@@ -113,42 +113,46 @@ public class PaperSpooler implements ISpooler {
 
         try { // IOException
             diverter.up();
-            motor.forward(55);
+            motor.forward(60);
 
             /* Wait for paper to enter the scanner. */
-            final boolean paperSpooled = halfwaySensor.waitForEvent(PinEdge.FALLING, () -> {}, 3000);
+            final boolean paperSpooled = halfwaySensor.waitForEvent(PinEdge.FALLING, 3000);
             if (paperSpooled) {
                 System.out.println("Paper taken in, beginning scan");
+                BallotStatus scanStatus;
                 waitMillis(150); // Small delay is necessary here to ensure paper is fed
 
                 motor.reverse(25);
                 String code = scanner.scan(SCANTIME);
                 System.out.println("Code scanned: " + code);
                 motor.stop();
-                // TODO: add delays for accept/reject messages
                 if (code.isEmpty()) {
                     System.out.println("Ballot not scanned");
                     diverter.up();
-                    statusUpdater.pushStatus(BallotStatus.REJECT);
+//                    statusUpdater.pushStatus(BallotStatus.REJECT);
+                    scanStatus = BallotStatus.REJECT;
                 } else if (validator.validate(code)) {
                     System.out.println("Ballot code valid");
                     diverter.down();
-                    statusUpdater.pushStatus(BallotStatus.ACCEPT);
+//                    statusUpdater.pushStatus(BallotStatus.ACCEPT);
+                    scanStatus = BallotStatus.ACCEPT;
                 } else {
                     System.out.println("Ballot code invalid");
                     diverter.up();
-                    statusUpdater.pushStatus(BallotStatus.REJECT);
+//                    statusUpdater.pushStatus(BallotStatus.REJECT);
+                    scanStatus = BallotStatus.REJECT;
                 }
 
-                //waitMillis(1000); // Wait for diverter to fully actuate
+                waitMillis(1000); // Wait for diverter to fully actuate
                 motor.reverse(50);
 
                 /* Wait for paper to exit the scanner. */
-                final boolean paperEjected = halfwaySensor.waitForEvent(PinEdge.RISING, () -> {}, 2000);
+                final boolean paperEjected = halfwaySensor.waitForEvent(PinEdge.RISING, 4000);
                 if (paperEjected) {
                     System.out.println("Spooler cleared");
                     waitMillis(500); // Ensure paper is completely ejected
                     motor.stop();
+                    statusUpdater.pushStatus(scanStatus);
                     status = DeviceStatus.READY;
                     statusUpdater.pushStatus(BallotStatus.WAITING);
                 } else {

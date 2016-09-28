@@ -4,7 +4,12 @@ import edu.rice.starvote.ballotbox.BallotStatus;
 import edu.rice.starvote.ballotbox.IStatusUpdate;
 
 /**
- * Created by cyricc on 9/20/2016.
+ * Controls the box status Swing display. A `BallotStatus` is translated to a formatted, human-readable
+ * message shown on the display.
+ *
+ * The `start()` method must be called to show the display before it is to be used.
+ *
+ * @author luejerry
  */
 public class DisplayController implements IStatusUpdate {
 
@@ -15,12 +20,16 @@ public class DisplayController implements IStatusUpdate {
     }
 
     /**
-     * Start the status display UI, making it visible.
+     * Start the status display UI, making it visible. This must be invoked before any other method.
      */
     public void start() {
         display.start();
     }
 
+    /**
+     * Display a human-readable formatted ballot status.
+     * @param status Ballot box status.
+     */
     public void pushStatus(BallotStatus status) {
         switch (status) {
             case ACCEPT:
