@@ -144,13 +144,13 @@ public class PaperSpooler implements ISpooler {
                 }
 
                 waitMillis(1000); // Wait for diverter to fully actuate
-                motor.reverse(50);
+                motor.reverse(60);
 
                 /* Wait for paper to exit the scanner. */
                 final boolean paperEjected = halfwaySensor.waitForEvent(PinEdge.RISING, 4000);
                 if (paperEjected) {
                     System.out.println("Spooler cleared");
-                    waitMillis(500); // Ensure paper is completely ejected
+                    waitMillis(600); // Ensure paper is completely ejected
                     motor.stop();
                     statusUpdater.pushStatus(scanStatus);
                     status = DeviceStatus.READY;
