@@ -111,7 +111,7 @@ public class GPIOListener {
      * @return True if event occured, false if timeout expired or interrupted.
      */
     public boolean waitForEvent(PinEdge edge, long timeout) {
-        boolean didTask;
+        boolean didTask = false;
 //        final CountDownLatch latch = new CountDownLatch(1);
 //        final GpioPinListenerDigital listener = generateListener(edge, () -> {}, latch);
 //        sensor.addListener(listener);
@@ -126,16 +126,15 @@ public class GPIOListener {
         try {
             switch (edge) {
                 case FALLING:
-                    lowSignal.await(timeout, TimeUnit.MILLISECONDS);
+                    didTask = lowSignal.await(timeout, TimeUnit.MILLISECONDS);
                     break;
                 case RISING:
-                    highSignal.await(timeout, TimeUnit.MILLISECONDS);
+                    didTask = highSignal.await(timeout, TimeUnit.MILLISECONDS);
                     break;
                 case BOTH:
-                    bothSignal.await(timeout, TimeUnit.MILLISECONDS);
+                    didTask = bothSignal.await(timeout, TimeUnit.MILLISECONDS);
                     break;
             }
-            didTask = true;
         } catch (InterruptedException e) {
             e.printStackTrace();
             didTask = false;
