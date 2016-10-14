@@ -130,6 +130,7 @@ public class PaperSpooler implements ISpooler {
                     System.out.println("Ballot not scanned");
                     diverter.up();
                     scanStatus = BallotStatus.REJECT;
+                    statusUpdater.pushStatus(scanStatus);
                 } else if (validator.validate(code)) {
                     System.out.println("Ballot code valid");
                     diverter.down();
@@ -149,7 +150,7 @@ public class PaperSpooler implements ISpooler {
                     System.out.println("Spooler cleared");
                     waitMillis(600); // Ensure paper is completely ejected
                     motor.stop();
-                    statusUpdater.pushStatus(scanStatus);
+//                    statusUpdater.pushStatus(scanStatus);
                     status = DeviceStatus.READY;
                     statusUpdater.pushStatus(BallotStatus.WAITING);
                 } else {

@@ -49,6 +49,8 @@ public class PageController {
                 if (progress.completed()) {
                     System.out.println("Ballot code " + code + " completed");
                     updater.pushStatus(BallotStatus.ACCEPT);
+
+                    addTestBallots(); // For testing only: readd the ballot code after it is finished scanning
                 } else {
                     System.out.println("Ballot code " + code + " scanned " + progress.pagesScanned + " of " + progress.pagesTotal);
                     display.pushProgress(progress);
