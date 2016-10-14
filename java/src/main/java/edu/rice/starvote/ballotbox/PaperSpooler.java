@@ -129,15 +129,17 @@ public class PaperSpooler implements ISpooler {
                 if (code.isEmpty()) {
                     System.out.println("Ballot not scanned");
                     diverter.up();
+//                    statusUpdater.pushStatus(BallotStatus.REJECT);
                     scanStatus = BallotStatus.REJECT;
-                    statusUpdater.pushStatus(scanStatus);
                 } else if (validator.validate(code)) {
                     System.out.println("Ballot code valid");
                     diverter.down();
+//                    statusUpdater.pushStatus(BallotStatus.ACCEPT);
                     scanStatus = BallotStatus.ACCEPT;
                 } else {
                     System.out.println("Ballot code invalid");
                     diverter.up();
+//                    statusUpdater.pushStatus(BallotStatus.REJECT);
                     scanStatus = BallotStatus.REJECT;
                 }
 
@@ -150,7 +152,7 @@ public class PaperSpooler implements ISpooler {
                     System.out.println("Spooler cleared");
                     waitMillis(600); // Ensure paper is completely ejected
                     motor.stop();
-//                    statusUpdater.pushStatus(scanStatus);
+                    statusUpdater.pushStatus(scanStatus);
                     status = DeviceStatus.READY;
                     statusUpdater.pushStatus(BallotStatus.WAITING);
                 } else {
