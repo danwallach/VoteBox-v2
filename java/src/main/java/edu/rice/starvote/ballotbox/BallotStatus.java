@@ -21,6 +21,10 @@ public enum BallotStatus {
      */
     SPOOLING("pending"),
     /**
+     * A sheet of a multipage ballot was accepted.
+     */
+    PARTIALACCEPT("partial"),
+    /**
      * The ballot was accepted.
      */
     ACCEPT("accept"),

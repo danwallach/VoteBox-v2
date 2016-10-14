@@ -1,5 +1,6 @@
 package edu.rice.starvote.ballotbox.swingui;
 
+import edu.rice.starvote.ballotbox.BallotProgress;
 import edu.rice.starvote.ballotbox.BallotStatus;
 import edu.rice.starvote.ballotbox.IStatusUpdate;
 
@@ -77,6 +78,18 @@ public class DisplayController implements IStatusUpdate {
                         "#F44336"
                 );
                 break;
+        }
+    }
+
+    public void pushProgress(BallotProgress progress) {
+        if (progress.completed()) {
+            pushStatus(BallotStatus.ACCEPT);
+        } else {
+            display.setText(
+                    "Page " + progress.pagesScanned + " of " + progress.pagesTotal + " accepted.",
+                    "96px",
+                    "#FFFFFF",
+                    "#388E3C");
         }
     }
 }
