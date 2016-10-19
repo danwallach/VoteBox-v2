@@ -1,8 +1,6 @@
-# Ballot box driver, Java edition 1.7
+# Ballot box driver, Java edition 1.9
 
-Fully event-driven implementation of the ballot box driver software in Java.
-The web client for the screen display and sound is not included; it is
-available at [VoteBox-Display](https://github.com/luejerry/VoteBox-Display).
+Driver application for the STAR-Vote ballot box, written in Java for the Raspberry Pi.
 
 ## Requirements
 - Raspberry Pi 3
@@ -15,6 +13,12 @@ Pi-blaster **must** be daemonized and configured with a pulse frequency of 50 Hz
 running this application (refer to its documentation to see how to do this). We have
 also noted broken PWM behavior if the daemon is started immediately at boot. This was
 resolved by delaying the start of pi-blaster by 30 seconds on boot.
+
+*Update 9/28/2016*: The cause of the unreliable PWM behavior may be due to dynamic
+PWM clock scaling specific to certain conditions on the Pi3 (possibly HDMI). To
+resolve, run pi-blaster in PCM mode:
+
+`./pi-blaster --pcm`
 
 ### Root access
 The application may be run with normal privileges if the machine is running Raspbian

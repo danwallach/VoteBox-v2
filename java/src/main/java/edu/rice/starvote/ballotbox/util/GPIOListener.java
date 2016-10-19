@@ -4,6 +4,7 @@ import com.pi4j.io.gpio.GpioPinDigitalInput;
 import com.pi4j.io.gpio.Pin;
 import com.pi4j.io.gpio.PinEdge;
 import com.pi4j.io.gpio.PinState;
+import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 
 import java.util.concurrent.CountDownLatch;
@@ -19,6 +20,9 @@ public class GPIOListener {
 
     private final Pin wpiPin;
     private final GpioPinDigitalInput sensor;
+    private CountDownLatch lowSignal = new CountDownLatch(1);
+    private CountDownLatch highSignal = new CountDownLatch(1);
+    private CountDownLatch bothSignal = new CountDownLatch(1);
 
     /**
      * Constructor. Initializes the given pin for GPIO digital input.
@@ -27,6 +31,23 @@ public class GPIOListener {
     public GPIOListener(int pin) {
         wpiPin = PinMap.mapPin(pin).get();
         sensor = GPIOManager.controller().provisionDigitalInputPin(wpiPin);
+
+        sensor.addListener((GpioPinListenerDigital) event -> {
+            switch (event.getEdge()) {
+                case RISING:
+                    highSignal.countDown();
+                    highSignal = new CountDownLatch(1);
+                    bothSignal.countDown();
+                    bothSignal = new CountDownLatch(1);
+                    break;
+                case FALLING:
+                    lowSignal.countDown();
+                    lowSignal = new CountDownLatch(1);
+                    bothSignal.countDown();
+                    bothSignal = new CountDownLatch(1);
+                    break;
+            }
+        });
     }
 
     /**
@@ -39,24 +60,40 @@ public class GPIOListener {
      * desired.
      *
      * @param edge Direction of state change to listen for: `RISING`, `FALLING`, or `BOTH`.
-     * @param task Task to execute when event is detected.
      * @return True if event occured, false if interrupted while waiting.
      */
-    public boolean waitForEvent(PinEdge edge, Runnable task) {
+    public boolean waitForEvent(PinEdge edge) {
         boolean didTask;
-        final CountDownLatch latch = new CountDownLatch(1);
-        final GpioPinListenerDigital listener = generateListener(edge, task, latch);
-        sensor.addListener(listener);
+//        final CountDownLatch latch = new CountDownLatch(1);
+//        final GpioPinListenerDigital listener = generateListener(edge, () -> {}, latch);
+//        sensor.addListener(listener);
+//        try {
+//            latch.await();
+//            didTask = true;
+//        } catch (InterruptedException e) {
+//            System.err.println(e.toString());
+//            didTask = false;
+//        } finally {
+//            sensor.removeAllListeners();
+//        }
+//        sensor.removeAllListeners();
         try {
-            latch.await();
+            switch (edge) {
+                case FALLING:
+                    lowSignal.await();
+                    break;
+                case RISING:
+                    highSignal.await();
+                    break;
+                case BOTH:
+                    bothSignal.await();
+                    break;
+            }
             didTask = true;
         } catch (InterruptedException e) {
-            System.err.println(e.toString());
+            e.printStackTrace();
             didTask = false;
-        } finally {
-            sensor.removeAllListeners();
         }
-        sensor.removeAllListeners();
         return didTask;
     }
 
@@ -70,24 +107,38 @@ public class GPIOListener {
      * desired.
      *
      * @param edge Direction of state change to listen for: `RISING`, `FALLING`, or `BOTH`.
-     * @param task Task to execute when event is detected.
      * @param timeout Time to wait in milliseconds.
      * @return True if event occured, false if timeout expired or interrupted.
      */
-    public boolean waitForEvent(PinEdge edge, Runnable task, long timeout) {
-        boolean didTask;
-        final CountDownLatch latch = new CountDownLatch(1);
-        final GpioPinListenerDigital listener = generateListener(edge, task, latch);
-        sensor.addListener(listener);
+    public boolean waitForEvent(PinEdge edge, long timeout) {
+        boolean didTask = false;
+//        final CountDownLatch latch = new CountDownLatch(1);
+//        final GpioPinListenerDigital listener = generateListener(edge, () -> {}, latch);
+//        sensor.addListener(listener);
+//        try {
+//            didTask = latch.await(timeout, TimeUnit.MILLISECONDS);
+//        } catch (InterruptedException e) {
+//            System.err.println(e.toString());
+//            didTask = false;
+//        } finally {
+//            sensor.removeAllListeners();
+//        }
         try {
-            didTask = latch.await(timeout, TimeUnit.MILLISECONDS);
+            switch (edge) {
+                case FALLING:
+                    didTask = lowSignal.await(timeout, TimeUnit.MILLISECONDS);
+                    break;
+                case RISING:
+                    didTask = highSignal.await(timeout, TimeUnit.MILLISECONDS);
+                    break;
+                case BOTH:
+                    didTask = bothSignal.await(timeout, TimeUnit.MILLISECONDS);
+                    break;
+            }
         } catch (InterruptedException e) {
-            System.err.println(e.toString());
+            e.printStackTrace();
             didTask = false;
-        } finally {
-            sensor.removeAllListeners();
         }
-        sensor.removeAllListeners();
         return didTask;
     }
 
