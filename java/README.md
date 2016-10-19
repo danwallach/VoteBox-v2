@@ -1,8 +1,6 @@
-# Ballot box driver, Java edition 1.7
+# Ballot box driver, Java edition 1.9
 
-Fully event-driven implementation of the ballot box driver software in Java.
-The web client for the screen display and sound is not included; it is
-available at [VoteBox-Display](https://github.com/luejerry/VoteBox-Display).
+Driver application for the STAR-Vote ballot box, written in Java for the Raspberry Pi.
 
 ## Requirements
 - Raspberry Pi 3
