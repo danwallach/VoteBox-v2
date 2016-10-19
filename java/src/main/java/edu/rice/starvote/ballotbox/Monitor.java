@@ -38,7 +38,7 @@ public class Monitor {
                 System.out.println("Device " + spooler.getStatus());
             } else {
                 try {
-                    TimeUnit.MILLISECONDS.sleep(1000);
+                    TimeUnit.MILLISECONDS.sleep(2000);
                     if (listener.getState().isLow()) {
                         System.out.println("false positive");
                         continue;
