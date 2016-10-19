@@ -1,5 +1,5 @@
 group 'edu.rice.starvote'
-version '1.9'
+version '2.0'
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -38,13 +38,6 @@ buildscript {
 }
 apply plugin: 'ch.raffael.pegdown-doclet'
 
-task fxStartScript(type: CreateStartScripts) {
-    mainClassName = 'edu.rice.starvote.ballotbox.BallotBoxFX'
-    applicationName = 'ballotboxfx'
-    outputDir = new File(project.buildDir, 'scripts')
-    classpath = jar.outputs.files + project.configurations.runtime
-}
-
 task swingStartScript(type: CreateStartScripts) {
     mainClassName = 'edu.rice.starvote.ballotbox.SwingController'
     applicationName = 'ballotboxsw'
@@ -60,10 +53,6 @@ distributions {
             }
             from ("../../STAR-Vote/rules") {
                 into "rules"
-            }
-            from(fxStartScript) {
-                into "bin"
-                fileMode = 0755
             }
             from(swingStartScript) {
                 into "bin"
